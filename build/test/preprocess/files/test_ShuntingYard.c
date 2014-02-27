@@ -1,5 +1,5 @@
 #include "unity.h"
-#include "mock_Addition.h"
+#include "Token.h"
 #include "ShuntingYard.h"
 
 
@@ -9,40 +9,32 @@ void tearDown() {}
 
 
 
-void test_initTokenizer_should_initiate_and_return_a_tokenizer_properly()
+void test_should_return_proper_addition()
 
 {
 
 
 
- Tokenizer *testTokenizer = initTokenizer("2+3");
 
- if ((((testTokenizer)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)12);;};
 
- UnityAssertEqualString((const char*)("2+3"), (const char*)(testTokenizer->rawString), (((void *)0)), (_U_UINT)13);
+ Tokenizer *newTokenizer->rawString == "2+3";
 
- UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((testTokenizer->startIndex)), (((void *)0)), (_U_UINT)14, UNITY_DISPLAY_STYLE_INT);
+      newTokenizer->startIndex == 0;
 
- UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((testTokenizer->length)), (((void *)0)), (_U_UINT)15, UNITY_DISPLAY_STYLE_INT);
-
-}
+    newTokenizer->length == 3;
 
 
 
-void test_should_add_2_values_from_tokenizer_using_stack(){
+ Number *getNumToken = {NUMBER , 2};
+
+ Token *numToken =(*Token)(getNumToken);
 
 
 
- Tokenizer type;
-
- addition_CMockExpectAndReturn(21, 2, 3, 5);
-
- Expression (2,3,5);
-
- UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((ans.x)), (((void *)0)), (_U_UINT)23, UNITY_DISPLAY_STYLE_INT);
+ getToken_ExpectAndReturn(newTokenizer,numToken);
 
 
 
-
+ UnityAssertEqualNumber((_U_SINT)((numToken)), (_U_SINT)((value)), (((void *)0)), (_U_UINT)21, UNITY_DISPLAY_STYLE_INT);
 
 }

@@ -8,12 +8,9 @@
   Unity.NumberOfTests++; \
   if (TEST_PROTECT()) \
   { \
-      CMock_Init(); \
       setUp(); \
       TestFunc(); \
-      CMock_Verify(); \
   } \
-  CMock_Destroy(); \
   if (TEST_PROTECT() && !TEST_IS_IGNORED) \
   { \
     tearDown(); \
@@ -23,10 +20,8 @@
 
 //=======Automagically Detected Files To Include=====
 #include "unity.h"
-#include "cmock.h"
 #include <setjmp.h>
 #include <stdio.h>
-#include "mock_Addition.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -35,34 +30,13 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_initTokenizer_should_initiate_and_return_a_tokenizer_properly(void);
-extern void test_should_add_2_values_from_tokenizer_using_stack(void);
+extern void test_should_return_proper_addition(void);
 
-
-//=======Mock Management=====
-static void CMock_Init(void)
-{
-  GlobalExpectCount = 0;
-  GlobalVerifyOrder = 0;
-  GlobalOrderError = NULL;
-  mock_Addition_Init();
-}
-static void CMock_Verify(void)
-{
-  mock_Addition_Verify();
-}
-static void CMock_Destroy(void)
-{
-  mock_Addition_Destroy();
-}
 
 //=======Test Reset Option=====
 void resetTest()
 {
-  CMock_Verify();
-  CMock_Destroy();
   tearDown();
-  CMock_Init();
   setUp();
 }
 
@@ -72,8 +46,7 @@ int main(void)
 {
   Unity.TestFile = "test_ShuntingYard.c";
   UnityBegin();
-  RUN_TEST(test_initTokenizer_should_initiate_and_return_a_tokenizer_properly, 8);
-  RUN_TEST(test_should_add_2_values_from_tokenizer_using_stack, 18);
+  RUN_TEST(test_should_return_proper_addition, 8);
 
   return (UnityEnd());
 }
