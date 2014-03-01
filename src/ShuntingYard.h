@@ -1,15 +1,34 @@
 #ifndef __SHUNTING_YARD_H__
 #define __SHUNTING_YARD_H__
 
-typedef struct{
-	int x;
-	
+typedef enum {NUMBER,OPERATOR,IDENTIFIER}Token;
+//Will be update soon.
+typedef enum {ADD,SUBTRACT,DIVIDE,MULTIPLY,POST_INCREMENT,PRE_INCREMENT,POST_DECREMENT,PRE_DECREMENT}Operation;
+
+//This structure store the converted version of string
+typedef struct {
+	char *rawString;
+	int  startIndex;
+	int length;
+}Tokenizer;
+
+//Three type of token needed.
+typedef struct {
+	Token type;
+	int value;
 }Number;
 
-Number getNumber(int x);
-Number addNumber(int x,int z);
+typedef struct {
+	Token type;
+	Operation ope;
+}Operator;
 
+typedef struct {
+	Token type;
+	char *name;
+}Identifier;
 
+void evaluate(void *expression );
 
 #endif //__SHUNTING_YARD_H__
 

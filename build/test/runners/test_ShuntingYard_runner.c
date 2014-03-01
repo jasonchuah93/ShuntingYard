@@ -30,7 +30,9 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_should_return_proper_addition(void);
+extern void test_evaluate_exploreShuntingYard_return_rawString(void);
+extern void test_evaluate_exploreShuntingYard_return_startIndex(void);
+extern void test_evaluate_exploreShuntingYard_return_length(void);
 
 
 //=======Test Reset Option=====
@@ -46,7 +48,9 @@ int main(void)
 {
   Unity.TestFile = "test_ShuntingYard.c";
   UnityBegin();
-  RUN_TEST(test_should_return_proper_addition, 8);
+  RUN_TEST(test_evaluate_exploreShuntingYard_return_rawString, 12);
+  RUN_TEST(test_evaluate_exploreShuntingYard_return_startIndex, 21);
+  RUN_TEST(test_evaluate_exploreShuntingYard_return_length, 30);
 
   return (UnityEnd());
 }
