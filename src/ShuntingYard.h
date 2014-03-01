@@ -28,7 +28,6 @@ typedef struct {
 	char *name;
 }Identifier;
 
-void evaluate(void *expression );
 
 #endif //__SHUNTING_YARD_H__
 

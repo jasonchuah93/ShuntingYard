@@ -1,39 +1,55 @@
-#include <string.h>
 #include "unity.h"
 #include "ShuntingYard.h"
-//#include "mock_getToken.h"
-//#include <stdlib.h>
-
-
+#include <malloc.h>
+#include <string.h>
+#include "mock_initialTokenizer.h"
+#include "mock_getToken.h"
 
 void setUp(){}
 void tearDown() {}
 
-void test_evaluate_exploreShuntingYard_return_rawString(){
-	//Create text fixture
-	Tokenizer expression = {.rawString = "2+3"};
+void test_should_get_number_token_from_unknown_token(){
 	
-	//Unit test
-	TEST_ASSERT_EQUAL_STRING("2+3",expression.rawString);
+	
 	
 }
 
-void test_evaluate_exploreShuntingYard_return_startIndex(){
-	//Create text fixture
-	Tokenizer expression = {.startIndex = 0};
-	
-	//Unit test
-	TEST_ASSERT_EQUAL(0 , expression.startIndex);
-	
-}
 
-void test_evaluate_exploreShuntingYard_return_length(){
+
+/*
+void test_evaluate_exploreShuntingYard_return_expression(){
 	//Create text fixture
-	Tokenizer expression = {.length =3};
+	Tokenizer expression0 = {.rawString = "2+3",.startIndex = 0,.length = 3};
 	
 	//Unit test
-	TEST_ASSERT_EQUAL(3 , expression.length);
+	TEST_ASSERT_EQUAL_STRING("2+3",expression0.rawString);
+	TEST_ASSERT_EQUAL(0 , expression0.startIndex);
+	TEST_ASSERT_EQUAL(3 , expression0.length);
 }
+*/
+
+/*
+void test_expression_should_tokenize_into_token(){
+	
+	//Tokenizer expression = {.rawString = " ",.startIndex = 0,.length = 0};
+	//initializeToken_Expect("2+3",0,3);
+	//expression = evaluate("2+3",0,3);
+	
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 void test_should_pass_the_correct_token_type_to_correct_stack(){
 	//Create text fixture

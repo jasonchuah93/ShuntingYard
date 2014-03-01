@@ -9,14 +9,16 @@
 typedef struct _CMOCK_getToken_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
+  Token* ReturnVal;
   int CallOrder;
-  char* Expected_fakeexpression;
+  Tokenizer* Expected_tokenizer;
 
 } CMOCK_getToken_CALL_INSTANCE;
 
 static struct mock_getTokenInstance
 {
   int getToken_IgnoreBool;
+  Token* getToken_FinalReturn;
   CMOCK_getToken_CALLBACK getToken_CallbackFunctionPointer;
   int getToken_CallbackCalls;
   CMOCK_MEM_INDEX_TYPE getToken_CallInstance;
@@ -51,19 +53,21 @@ void mock_getToken_Destroy(void)
   GlobalVerifyOrder = 0;
 }
 
-void getToken(char* fakeexpression)
+Token* getToken(Tokenizer* tokenizer)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
   CMOCK_getToken_CALL_INSTANCE* cmock_call_instance = (CMOCK_getToken_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.getToken_CallInstance);
   Mock.getToken_CallInstance = CMock_Guts_MemNext(Mock.getToken_CallInstance);
   if (Mock.getToken_IgnoreBool)
   {
-    return;
+    if (cmock_call_instance == NULL)
+      return Mock.getToken_FinalReturn;
+    Mock.getToken_FinalReturn = cmock_call_instance->ReturnVal;
+    return cmock_call_instance->ReturnVal;
   }
   if (Mock.getToken_CallbackFunctionPointer != NULL)
   {
-    Mock.getToken_CallbackFunctionPointer(fakeexpression, Mock.getToken_CallbackCalls++);
-    return;
+    return Mock.getToken_CallbackFunctionPointer(tokenizer, Mock.getToken_CallbackCalls++);
   }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'getToken' called more times than expected.");
   cmock_line = cmock_call_instance->LineNumber;
@@ -71,20 +75,27 @@ void getToken(char* fakeexpression)
     UNITY_TEST_FAIL(cmock_line, "Function 'getToken' called earlier than expected.");
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'getToken' called later than expected.");
-  UNITY_TEST_ASSERT_EQUAL_STRING(cmock_call_instance->Expected_fakeexpression, fakeexpression, cmock_line, "Function 'getToken' called with unexpected value for argument 'fakeexpression'.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_tokenizer), (void*)(tokenizer), sizeof(Tokenizer), cmock_line, "Function 'getToken' called with unexpected value for argument 'tokenizer'.");
+  return cmock_call_instance->ReturnVal;
 }
 
-void CMockExpectParameters_getToken(CMOCK_getToken_CALL_INSTANCE* cmock_call_instance, char* fakeexpression)
+void CMockExpectParameters_getToken(CMOCK_getToken_CALL_INSTANCE* cmock_call_instance, Tokenizer* tokenizer)
 {
-  cmock_call_instance->Expected_fakeexpression = fakeexpression;
+  cmock_call_instance->Expected_tokenizer = tokenizer;
 }
 
-void getToken_CMockIgnore(void)
+void getToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_return)
 {
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_getToken_CALL_INSTANCE));
+  CMOCK_getToken_CALL_INSTANCE* cmock_call_instance = (CMOCK_getToken_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.getToken_CallInstance = CMock_Guts_MemChain(Mock.getToken_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.getToken_IgnoreBool = (int)1;
 }
 
-void getToken_CMockExpect(UNITY_LINE_TYPE cmock_line, char* fakeexpression)
+void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Tokenizer* tokenizer, Token* cmock_to_return)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_getToken_CALL_INSTANCE));
   CMOCK_getToken_CALL_INSTANCE* cmock_call_instance = (CMOCK_getToken_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
@@ -92,7 +103,8 @@ void getToken_CMockExpect(UNITY_LINE_TYPE cmock_line, char* fakeexpression)
   Mock.getToken_CallInstance = CMock_Guts_MemChain(Mock.getToken_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
-  CMockExpectParameters_getToken(cmock_call_instance, fakeexpression);
+  CMockExpectParameters_getToken(cmock_call_instance, tokenizer);
+  cmock_call_instance->ReturnVal = cmock_to_return;
 }
 
 void getToken_StubWithCallback(CMOCK_getToken_CALLBACK Callback)

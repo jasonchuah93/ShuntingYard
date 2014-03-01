@@ -8,9 +8,12 @@
   Unity.NumberOfTests++; \
   if (TEST_PROTECT()) \
   { \
+      CMock_Init(); \
       setUp(); \
       TestFunc(); \
+      CMock_Verify(); \
   } \
+  CMock_Destroy(); \
   if (TEST_PROTECT() && !TEST_IS_IGNORED) \
   { \
     tearDown(); \
@@ -20,8 +23,11 @@
 
 //=======Automagically Detected Files To Include=====
 #include "unity.h"
+#include "cmock.h"
 #include <setjmp.h>
 #include <stdio.h>
+#include "mock_getToken.h"
+#include "mock_initialTokenizer.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -30,15 +36,36 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_evaluate_exploreShuntingYard_return_rawString(void);
-extern void test_evaluate_exploreShuntingYard_return_startIndex(void);
-extern void test_evaluate_exploreShuntingYard_return_length(void);
+extern void test_should_get_number_token_from_unknown_token(void);
 
+
+//=======Mock Management=====
+static void CMock_Init(void)
+{
+  GlobalExpectCount = 0;
+  GlobalVerifyOrder = 0;
+  GlobalOrderError = NULL;
+  mock_getToken_Init();
+  mock_initialTokenizer_Init();
+}
+static void CMock_Verify(void)
+{
+  mock_getToken_Verify();
+  mock_initialTokenizer_Verify();
+}
+static void CMock_Destroy(void)
+{
+  mock_getToken_Destroy();
+  mock_initialTokenizer_Destroy();
+}
 
 //=======Test Reset Option=====
 void resetTest()
 {
+  CMock_Verify();
+  CMock_Destroy();
   tearDown();
+  CMock_Init();
   setUp();
 }
 
@@ -48,9 +75,7 @@ int main(void)
 {
   Unity.TestFile = "test_ShuntingYard.c";
   UnityBegin();
-  RUN_TEST(test_evaluate_exploreShuntingYard_return_rawString, 12);
-  RUN_TEST(test_evaluate_exploreShuntingYard_return_startIndex, 21);
-  RUN_TEST(test_evaluate_exploreShuntingYard_return_length, 30);
+  RUN_TEST(test_should_get_number_token_from_unknown_token, 11);
 
   return (UnityEnd());
 }

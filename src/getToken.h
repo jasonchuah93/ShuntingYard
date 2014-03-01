@@ -1,13 +1,8 @@
 #ifndef __GETTOKEN_H__
 #define __GETTOKEN_H__
-//Mocking 
 
+#include "ShuntingYard.h"
 
-//int initializeToken(int value1,int value2,Operation ope);
-//Token *getToken(Tokenizer *tokenizer);
-
- void getToken(char *fakeexpression);
-
-
+Token *getToken (Tokenizer *tokenizer);
 
 #endif //__GETTOKEN_H__

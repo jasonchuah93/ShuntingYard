@@ -1,1 +1,10 @@
- void getToken(char *fakeexpression);
+#include "ShuntingYard.h"
+
+
+
+
+
+
+
+
+Token *getToken (Tokenizer *tokenizer);

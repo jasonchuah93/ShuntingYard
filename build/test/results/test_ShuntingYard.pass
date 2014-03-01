@@ -3,20 +3,14 @@
   :path: test
   :file: test_ShuntingYard.c
 :successes:
-- :test: test_evaluate_exploreShuntingYard_return_rawString
-  :line: 12
-  :message: ''
-- :test: test_evaluate_exploreShuntingYard_return_startIndex
-  :line: 21
-  :message: ''
-- :test: test_evaluate_exploreShuntingYard_return_length
-  :line: 30
+- :test: test_should_get_number_token_from_unknown_token
+  :line: 11
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 3
-  :passed: 3
+  :total: 1
+  :passed: 1
   :failed: 0
   :ignored: 0
 :stdout: []
