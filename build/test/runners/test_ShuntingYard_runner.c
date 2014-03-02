@@ -35,7 +35,10 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_should_get_unknowToken_from_expression(void);
+extern void test_should_verify_first_token_type_from_unknown_token(void);
+extern void test_should_verify_second_token_type_fron_unknown_token(void);
+extern void test_should_verify_third_token_type_fron_unknown_token(void);
+extern void test_should_push_number_token_to_number_stack(void);
 
 
 //=======Mock Management=====
@@ -71,7 +74,10 @@ int main(void)
 {
   Unity.TestFile = "test_ShuntingYard.c";
   UnityBegin();
-  RUN_TEST(test_should_get_unknowToken_from_expression, 12);
+  RUN_TEST(test_should_verify_first_token_type_from_unknown_token, 12);
+  RUN_TEST(test_should_verify_second_token_type_fron_unknown_token, 25);
+  RUN_TEST(test_should_verify_third_token_type_fron_unknown_token, 39);
+  RUN_TEST(test_should_push_number_token_to_number_stack, 53);
 
   return (UnityEnd());
 }

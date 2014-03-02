@@ -3,14 +3,23 @@
   :path: test
   :file: test_ShuntingYard.c
 :successes:
-- :test: test_should_get_unknowToken_from_expression
+- :test: test_should_verify_first_token_type_from_unknown_token
   :line: 12
+  :message: ''
+- :test: test_should_verify_second_token_type_fron_unknown_token
+  :line: 25
+  :message: ''
+- :test: test_should_verify_third_token_type_fron_unknown_token
+  :line: 39
+  :message: ''
+- :test: test_should_push_number_token_to_number_stack
+  :line: 53
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 1
+  :total: 4
+  :passed: 4
   :failed: 0
   :ignored: 0
 :stdout: []

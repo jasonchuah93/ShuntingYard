@@ -4,28 +4,23 @@
 #include <string.h>
 #include "ShuntingYard.h"
 
- Token tokenizeUnknownTokenFromExpression(Token *unknownToken){
+Token verifyTokenTypeFromUnknownToken(Token *unknownToken){
 	//Mocked getToken function
 	//Tokenizer become unknown Token type
-	//Token newToken = (Token*)getToken(NUMBER);
 	//Get Number Token from unknown Token
 	
-	Token token = NUMBER; //Input
-		Number numToken = {.type = NUMBER, .value = 2}; //Output
-	if(*unknownToken == NUMBER)
+	if(unknownToken == NUMBER)
+		{
+			Token token = NUMBER;
+			Number numToken = {.type = NUMBER, .value = 2};
+			
+			
+			//Number *numToken =(Number*)(unknownToken);
+		}
 		return NUMBER;
-	else if (*unknownToken == OPERATOR)
-		return OPERATOR;
-	else if (*unknownToken == IDENTIFIER)
-		return IDENTIFIER;
 		
 }
-	
-	
 
-
-
-		
 
 
 
