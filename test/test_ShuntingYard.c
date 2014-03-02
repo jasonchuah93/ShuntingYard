@@ -4,6 +4,7 @@
 #include <malloc.h>
 #include <string.h>
 #include "mock_getToken.h"
+#include "mock_push.h"
 
 
 void setUp(){}
@@ -84,12 +85,17 @@ void test_fullStack_should_be_full(){
 	
 }
 
-void test_push_only_number_token_to_number_stack(){
-	
-	int result;
-	result = numberStack;
-	//pushNumberTokenToNumberStack_Expect(2,result);
-	
+void test_push_first_token_to_number_stack(){
+	//Create test fixture
+	Number *numToken = malloc(sizeof(Number));
+	numToken->type = NUMBER;
+	numToken->value = 2;
+	//Mock function
+	stackTokens *numberToken = numberStack(2);
+	pushNumberTokenToNumberStack_ExpectAndReturn(numToken,2);
+	stackTokens *firstToken = pushNumberTokenToNumberStack (numToken);
+	//Unit test
+	TEST_ASSERT_EQUAL(firstToken,numberToken->value1);
 	
 	
 }

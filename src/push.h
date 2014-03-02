@@ -4,6 +4,6 @@
 #include "ShuntingYard.h"
 #include "stack.h"
 
-int pushNumberTokenToNumberStack(int value1);
+int pushNumberTokenToNumberStack(Token *testToken);
 
 #endif //__PUSH_H__

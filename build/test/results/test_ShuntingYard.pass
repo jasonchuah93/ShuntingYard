@@ -4,28 +4,28 @@
   :file: test_ShuntingYard.c
 :successes:
 - :test: test_should_verify_first_token_type_from_unknown_token
-  :line: 13
+  :line: 14
   :message: ''
 - :test: test_should_verify_second_token_type_fron_unknown_token
-  :line: 26
+  :line: 27
   :message: ''
 - :test: test_should_verify_third_token_type_fron_unknown_token
-  :line: 40
+  :line: 41
   :message: ''
 - :test: test_initStack_should_initiate_and_return_a_stack_properly
-  :line: 54
+  :line: 55
   :message: ''
 - :test: test_destroyStack_should_destroy_and_return_empty_stack
-  :line: 62
+  :line: 63
   :message: ''
 - :test: test_emptyStack_should_be_empty
-  :line: 70
+  :line: 71
   :message: ''
 - :test: test_fullStack_should_be_full
-  :line: 79
+  :line: 80
   :message: ''
-- :test: test_push_only_number_token_to_number_stack
-  :line: 87
+- :test: test_push_first_token_to_number_stack
+  :line: 88
   :message: ''
 :failures: []
 :ignores: []

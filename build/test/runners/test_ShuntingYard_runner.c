@@ -27,6 +27,7 @@
 #include <setjmp.h>
 #include <stdio.h>
 #include "mock_getToken.h"
+#include "mock_push.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -42,7 +43,7 @@ extern void test_initStack_should_initiate_and_return_a_stack_properly(void);
 extern void test_destroyStack_should_destroy_and_return_empty_stack(void);
 extern void test_emptyStack_should_be_empty(void);
 extern void test_fullStack_should_be_full(void);
-extern void test_push_only_number_token_to_number_stack(void);
+extern void test_push_first_token_to_number_stack(void);
 
 
 //=======Mock Management=====
@@ -52,14 +53,17 @@ static void CMock_Init(void)
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
   mock_getToken_Init();
+  mock_push_Init();
 }
 static void CMock_Verify(void)
 {
   mock_getToken_Verify();
+  mock_push_Verify();
 }
 static void CMock_Destroy(void)
 {
   mock_getToken_Destroy();
+  mock_push_Destroy();
 }
 
 //=======Test Reset Option=====
@@ -78,14 +82,14 @@ int main(void)
 {
   Unity.TestFile = "test_ShuntingYard.c";
   UnityBegin();
-  RUN_TEST(test_should_verify_first_token_type_from_unknown_token, 13);
-  RUN_TEST(test_should_verify_second_token_type_fron_unknown_token, 26);
-  RUN_TEST(test_should_verify_third_token_type_fron_unknown_token, 40);
-  RUN_TEST(test_initStack_should_initiate_and_return_a_stack_properly, 54);
-  RUN_TEST(test_destroyStack_should_destroy_and_return_empty_stack, 62);
-  RUN_TEST(test_emptyStack_should_be_empty, 70);
-  RUN_TEST(test_fullStack_should_be_full, 79);
-  RUN_TEST(test_push_only_number_token_to_number_stack, 87);
+  RUN_TEST(test_should_verify_first_token_type_from_unknown_token, 14);
+  RUN_TEST(test_should_verify_second_token_type_fron_unknown_token, 27);
+  RUN_TEST(test_should_verify_third_token_type_fron_unknown_token, 41);
+  RUN_TEST(test_initStack_should_initiate_and_return_a_stack_properly, 55);
+  RUN_TEST(test_destroyStack_should_destroy_and_return_empty_stack, 63);
+  RUN_TEST(test_emptyStack_should_be_empty, 71);
+  RUN_TEST(test_fullStack_should_be_full, 80);
+  RUN_TEST(test_push_first_token_to_number_stack, 88);
 
   return (UnityEnd());
 }

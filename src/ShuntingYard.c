@@ -42,21 +42,16 @@ stackT *stackIsFull(char *expression, int maxSize){
 
 }
 
-int numberStack(Token *unknownToken){
+stackTokens *numberStack ( int value1 ){
 	
-	Token token = NUMBER;
-	Number numToken= {.type =NUMBER,.value =2};
-	if(unknownToken == NUMBER)
-	{
-		Token *newToken = (Token*)(&numToken);
-		
-		
-	}
-	else 
-		return 0;
-		
+	stackTokens numStack;
+	numStack.value1 = value1;
+	Number *numToken= {2};
+	Token *newToken = (Token*)(numToken);
+	stackTokens *contents = malloc(sizeof(stackTokens));
+	contents->value1 = newToken;
+	return contents;
 	
-
 }
 
 
