@@ -56,16 +56,40 @@ void test_initStack_should_initiate_and_return_a_stack_properly(){
 	TEST_ASSERT_NOT_NULL(testStack);
 	TEST_ASSERT_EQUAL_STRING("2+3", testStack->data);
 	TEST_ASSERT_EQUAL(3,testStack->maxSize);
-	TEST_ASSERT_EQUAL(0,testStack->top);
+	
 }
 
 void test_destroyStack_should_destroy_and_return_empty_stack(){
-	stackT *testStack = initStack(NULL,0);
+	stackT *testStack = destroyStack(NULL,0);
 	TEST_ASSERT_NOT_NULL(testStack);
 	TEST_ASSERT_EQUAL_STRING(NULL,testStack->data);
 	TEST_ASSERT_EQUAL(0,testStack->maxSize);
-	TEST_ASSERT_EQUAL(0,testStack->top);
+	
+}
 
+void test_emptyStack_should_be_empty(){
 
+	stackT *testStack = stackIsEmpty(" ",0);
+	TEST_ASSERT_NOT_NULL(testStack);
+	TEST_ASSERT_EQUAL_STRING(" ",testStack->data);
+	TEST_ASSERT_EQUAL(0,testStack->maxSize);
+	
+}
+
+void test_fullStack_should_be_full(){
+
+	stackT *testStack = stackIsFull("2+3*4/5+6",9);
+	TEST_ASSERT_NOT_NULL(testStack);
+	TEST_ASSERT_EQUAL_STRING("2+3*4/5+6",testStack->data);
+	
+}
+
+void test_push_only_number_token_to_number_stack(){
+	
+	int result;
+	result = numberStack;
+	//pushNumberTokenToNumberStack_Expect(2,result);
+	
+	
 	
 }

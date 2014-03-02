@@ -106,7 +106,7 @@ void test_initStack_should_initiate_and_return_a_stack_properly(){
 
  UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((testStack->maxSize)), (((void *)0)), (_U_UINT)58, UNITY_DISPLAY_STYLE_INT);
 
- UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((testStack->top)), (((void *)0)), (_U_UINT)59, UNITY_DISPLAY_STYLE_INT);
+
 
 }
 
@@ -114,7 +114,7 @@ void test_initStack_should_initiate_and_return_a_stack_properly(){
 
 void test_destroyStack_should_destroy_and_return_empty_stack(){
 
- stackT *testStack = initStack(((void *)0),0);
+ stackT *testStack = destroyStack(((void *)0),0);
 
  if ((((testStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)64);;};
 
@@ -122,7 +122,55 @@ void test_destroyStack_should_destroy_and_return_empty_stack(){
 
  UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((testStack->maxSize)), (((void *)0)), (_U_UINT)66, UNITY_DISPLAY_STYLE_INT);
 
- UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((testStack->top)), (((void *)0)), (_U_UINT)67, UNITY_DISPLAY_STYLE_INT);
+
+
+}
+
+
+
+void test_emptyStack_should_be_empty(){
+
+
+
+ stackT *testStack = stackIsEmpty(" ",0);
+
+ if ((((testStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)73);;};
+
+ UnityAssertEqualString((const char*)(" "), (const char*)(testStack->data), (((void *)0)), (_U_UINT)74);
+
+ UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((testStack->maxSize)), (((void *)0)), (_U_UINT)75, UNITY_DISPLAY_STYLE_INT);
+
+
+
+}
+
+
+
+void test_fullStack_should_be_full(){
+
+
+
+ stackT *testStack = stackIsFull("2+3*4/5+6",9);
+
+ if ((((testStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)82);;};
+
+ UnityAssertEqualString((const char*)("2+3*4/5+6"), (const char*)(testStack->data), (((void *)0)), (_U_UINT)83);
+
+
+
+}
+
+
+
+void test_push_only_number_token_to_number_stack(){
+
+
+
+ int result;
+
+ result = numberStack;
+
+
 
 
 

@@ -40,6 +40,9 @@ extern void test_should_verify_second_token_type_fron_unknown_token(void);
 extern void test_should_verify_third_token_type_fron_unknown_token(void);
 extern void test_initStack_should_initiate_and_return_a_stack_properly(void);
 extern void test_destroyStack_should_destroy_and_return_empty_stack(void);
+extern void test_emptyStack_should_be_empty(void);
+extern void test_fullStack_should_be_full(void);
+extern void test_push_only_number_token_to_number_stack(void);
 
 
 //=======Mock Management=====
@@ -80,6 +83,9 @@ int main(void)
   RUN_TEST(test_should_verify_third_token_type_fron_unknown_token, 40);
   RUN_TEST(test_initStack_should_initiate_and_return_a_stack_properly, 54);
   RUN_TEST(test_destroyStack_should_destroy_and_return_empty_stack, 62);
+  RUN_TEST(test_emptyStack_should_be_empty, 70);
+  RUN_TEST(test_fullStack_should_be_full, 79);
+  RUN_TEST(test_push_only_number_token_to_number_stack, 87);
 
   return (UnityEnd());
 }

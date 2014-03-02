@@ -7,8 +7,21 @@ typedef char stackToken; //This type is the tokens enter into the stack
 typedef struct {
   char *data;
   int maxSize;
-  int top;
-} stackT;
+ 
+}stackT;
 
- stackT *initStack(char *expression, int value);
+
+typedef struct {
+	int value1;
+	int value2;
+	Operation ope;
+}stackJ;
+	
+stackT *initStack(char *expression, int value);
+stackT *destroyStack(char *expression,int maxSize);
+stackT *stackIsEmpty(char *expression,int maxSize);
+stackT *stackIsFull(char *expression, int maxSize);
+
+int numberStack(Token *unknownToken);
+ 
 #endif //__STACK_H__

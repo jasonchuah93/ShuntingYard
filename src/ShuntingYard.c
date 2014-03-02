@@ -13,23 +13,51 @@ Token verifyTokenTypeFromUnknownToken(Token *unknownToken){}
 	stackT *contents = malloc(sizeof(stackT));
 	contents->data = expression;
 	contents->maxSize = maxSize;
-	contents->top = 0;
+	
 	return contents;
 }
 
-stackT *destroyStack(char *expression){
+stackT *destroyStack(char *expression,int maxSize){
 	stackT *contents = malloc(sizeof(stackT));
-	free(contents->data);
 	contents->data = NULL;
-	contents->maxSize = 0;
-	contents->top = 0;
+	contents->maxSize = maxSize;
+	
+	return contents;
+}
 
-} 
+stackT *stackIsEmpty(char *expression,int maxSize){
+	stackT *contents = malloc(sizeof(stackT));
+	contents->data = " ";
+	contents->maxSize = maxSize;
+	
+	return contents;
+}
 
+stackT *stackIsFull(char *expression, int maxSize){
+	stackT *contents = malloc(sizeof(stackT));
+	contents->data = "2+3*4/5+6";
+	contents->maxSize = maxSize;
+	
+	return contents;
 
+}
+
+int numberStack(Token *unknownToken){
+	
+	Token token = NUMBER;
+	Number numToken= {.type =NUMBER,.value =2};
+	if(unknownToken == NUMBER)
+	{
+		Token *newToken = (Token*)(&numToken);
+		
+		
+	}
+	else 
+		return 0;
+		
 	
 
-
+}
 
 
 

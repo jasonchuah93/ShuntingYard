@@ -18,11 +18,20 @@
 - :test: test_destroyStack_should_destroy_and_return_empty_stack
   :line: 62
   :message: ''
+- :test: test_emptyStack_should_be_empty
+  :line: 70
+  :message: ''
+- :test: test_fullStack_should_be_full
+  :line: 79
+  :message: ''
+- :test: test_push_only_number_token_to_number_stack
+  :line: 87
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 5
-  :passed: 5
+  :total: 8
+  :passed: 8
   :failed: 0
   :ignored: 0
 :stdout: []
