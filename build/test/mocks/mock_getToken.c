@@ -11,7 +11,7 @@ typedef struct _CMOCK_getToken_CALL_INSTANCE
   UNITY_LINE_TYPE LineNumber;
   Token* ReturnVal;
   int CallOrder;
-  Tokenizer* Expected_tokenizer;
+  Tokenizer* Expected_testTokenizer;
 
 } CMOCK_getToken_CALL_INSTANCE;
 
@@ -53,7 +53,7 @@ void mock_getToken_Destroy(void)
   GlobalVerifyOrder = 0;
 }
 
-Token* getToken(Tokenizer* tokenizer)
+Token* getToken(Tokenizer* testTokenizer)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
   CMOCK_getToken_CALL_INSTANCE* cmock_call_instance = (CMOCK_getToken_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.getToken_CallInstance);
@@ -67,7 +67,7 @@ Token* getToken(Tokenizer* tokenizer)
   }
   if (Mock.getToken_CallbackFunctionPointer != NULL)
   {
-    return Mock.getToken_CallbackFunctionPointer(tokenizer, Mock.getToken_CallbackCalls++);
+    return Mock.getToken_CallbackFunctionPointer(testTokenizer, Mock.getToken_CallbackCalls++);
   }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'getToken' called more times than expected.");
   cmock_line = cmock_call_instance->LineNumber;
@@ -75,13 +75,13 @@ Token* getToken(Tokenizer* tokenizer)
     UNITY_TEST_FAIL(cmock_line, "Function 'getToken' called earlier than expected.");
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'getToken' called later than expected.");
-  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_tokenizer), (void*)(tokenizer), sizeof(Tokenizer), cmock_line, "Function 'getToken' called with unexpected value for argument 'tokenizer'.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_testTokenizer), (void*)(testTokenizer), sizeof(Tokenizer), cmock_line, "Function 'getToken' called with unexpected value for argument 'testTokenizer'.");
   return cmock_call_instance->ReturnVal;
 }
 
-void CMockExpectParameters_getToken(CMOCK_getToken_CALL_INSTANCE* cmock_call_instance, Tokenizer* tokenizer)
+void CMockExpectParameters_getToken(CMOCK_getToken_CALL_INSTANCE* cmock_call_instance, Tokenizer* testTokenizer)
 {
-  cmock_call_instance->Expected_tokenizer = tokenizer;
+  cmock_call_instance->Expected_testTokenizer = testTokenizer;
 }
 
 void getToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_return)
@@ -95,7 +95,7 @@ void getToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_r
   Mock.getToken_IgnoreBool = (int)1;
 }
 
-void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Tokenizer* tokenizer, Token* cmock_to_return)
+void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Tokenizer* testTokenizer, Token* cmock_to_return)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_getToken_CALL_INSTANCE));
   CMOCK_getToken_CALL_INSTANCE* cmock_call_instance = (CMOCK_getToken_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
@@ -103,7 +103,7 @@ void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Tokenizer* tokeni
   Mock.getToken_CallInstance = CMock_Guts_MemChain(Mock.getToken_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
-  CMockExpectParameters_getToken(cmock_call_instance, tokenizer);
+  CMockExpectParameters_getToken(cmock_call_instance, testTokenizer);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
 

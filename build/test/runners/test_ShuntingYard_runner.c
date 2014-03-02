@@ -27,7 +27,6 @@
 #include <setjmp.h>
 #include <stdio.h>
 #include "mock_getToken.h"
-#include "mock_initialTokenizer.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -36,7 +35,7 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_should_get_number_token_from_unknown_token(void);
+extern void test_should_get_unknowToken_from_expression(void);
 
 
 //=======Mock Management=====
@@ -46,17 +45,14 @@ static void CMock_Init(void)
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
   mock_getToken_Init();
-  mock_initialTokenizer_Init();
 }
 static void CMock_Verify(void)
 {
   mock_getToken_Verify();
-  mock_initialTokenizer_Verify();
 }
 static void CMock_Destroy(void)
 {
   mock_getToken_Destroy();
-  mock_initialTokenizer_Destroy();
 }
 
 //=======Test Reset Option=====
@@ -75,7 +71,7 @@ int main(void)
 {
   Unity.TestFile = "test_ShuntingYard.c";
   UnityBegin();
-  RUN_TEST(test_should_get_number_token_from_unknown_token, 11);
+  RUN_TEST(test_should_get_unknowToken_from_expression, 12);
 
   return (UnityEnd());
 }

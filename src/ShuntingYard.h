@@ -29,6 +29,10 @@ typedef struct {
 }Identifier;
 
 
+Token tokenizeUnknownTokenFromExpression(Token *unknownToken);
+
+
+
 #endif //__SHUNTING_YARD_H__
 
 

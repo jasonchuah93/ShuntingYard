@@ -7,4 +7,4 @@
 
 
 
-Token *getToken (Tokenizer *tokenizer);
+Token *getToken(Tokenizer *testTokenizer);

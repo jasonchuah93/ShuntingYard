@@ -3,6 +3,6 @@
 
 #include "ShuntingYard.h"
 
-Token *getToken (Tokenizer *tokenizer);
+Token *getToken(Tokenizer *testTokenizer);
 
 #endif //__GETTOKEN_H__
