@@ -38,7 +38,8 @@ extern void tearDown(void);
 extern void test_should_verify_first_token_type_from_unknown_token(void);
 extern void test_should_verify_second_token_type_fron_unknown_token(void);
 extern void test_should_verify_third_token_type_fron_unknown_token(void);
-extern void test_should_push_number_token_to_number_stack(void);
+extern void test_initStack_should_initiate_and_return_a_stack_properly(void);
+extern void test_destroyStack_should_destroy_and_return_empty_stack(void);
 
 
 //=======Mock Management=====
@@ -74,10 +75,11 @@ int main(void)
 {
   Unity.TestFile = "test_ShuntingYard.c";
   UnityBegin();
-  RUN_TEST(test_should_verify_first_token_type_from_unknown_token, 12);
-  RUN_TEST(test_should_verify_second_token_type_fron_unknown_token, 25);
-  RUN_TEST(test_should_verify_third_token_type_fron_unknown_token, 39);
-  RUN_TEST(test_should_push_number_token_to_number_stack, 53);
+  RUN_TEST(test_should_verify_first_token_type_from_unknown_token, 13);
+  RUN_TEST(test_should_verify_second_token_type_fron_unknown_token, 26);
+  RUN_TEST(test_should_verify_third_token_type_fron_unknown_token, 40);
+  RUN_TEST(test_initStack_should_initiate_and_return_a_stack_properly, 54);
+  RUN_TEST(test_destroyStack_should_destroy_and_return_empty_stack, 62);
 
   return (UnityEnd());
 }

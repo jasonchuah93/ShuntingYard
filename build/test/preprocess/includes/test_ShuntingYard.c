@@ -1,4 +1,5 @@
 ---
 - ShuntingYard.h
 - mock_getToken.h
+- stack.h
 - unity.h

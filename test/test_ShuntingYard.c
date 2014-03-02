@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "ShuntingYard.h"
+#include "stack.h"
 #include <malloc.h>
 #include <string.h>
 #include "mock_getToken.h"
@@ -38,7 +39,7 @@ void test_should_verify_second_token_type_fron_unknown_token(){
 
 void test_should_verify_third_token_type_fron_unknown_token(){
 	//Create test fixture
-	Tokenizer *testTokenizer =malloc(sizeof(Tokenizer));
+	Tokenizer *testTokenizer = malloc(sizeof(Tokenizer));
 	testTokenizer->rawString = "2+3";
 	testTokenizer->startIndex=0;
 	testTokenizer->length=3;
@@ -50,10 +51,21 @@ void test_should_verify_third_token_type_fron_unknown_token(){
 
 }
 
-void test_should_push_number_token_to_number_stack(){
-	
-
-
-
+void test_initStack_should_initiate_and_return_a_stack_properly(){
+	stackT *testStack = (stackT*)initStack("2+3",3);
+	TEST_ASSERT_NOT_NULL(testStack);
+	TEST_ASSERT_EQUAL_STRING("2+3", testStack->data);
+	TEST_ASSERT_EQUAL(3,testStack->maxSize);
+	TEST_ASSERT_EQUAL(0,testStack->top);
 }
 
+void test_destroyStack_should_destroy_and_return_empty_stack(){
+	stackT *testStack = initStack(NULL,0);
+	TEST_ASSERT_NOT_NULL(testStack);
+	TEST_ASSERT_EQUAL_STRING(NULL,testStack->data);
+	TEST_ASSERT_EQUAL(0,testStack->maxSize);
+	TEST_ASSERT_EQUAL(0,testStack->top);
+
+
+	
+}
