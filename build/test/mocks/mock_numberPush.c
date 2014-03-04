@@ -6,20 +6,20 @@
 #include "cmock.h"
 #include "mock_numberPush.h"
 
-typedef struct _CMOCK_pushToOutput_CALL_INSTANCE
+typedef struct _CMOCK_addToOutput_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
   int CallOrder;
   Token* Expected_token;
 
-} CMOCK_pushToOutput_CALL_INSTANCE;
+} CMOCK_addToOutput_CALL_INSTANCE;
 
 static struct mock_numberPushInstance
 {
-  int pushToOutput_IgnoreBool;
-  CMOCK_pushToOutput_CALLBACK pushToOutput_CallbackFunctionPointer;
-  int pushToOutput_CallbackCalls;
-  CMOCK_MEM_INDEX_TYPE pushToOutput_CallInstance;
+  int addToOutput_IgnoreBool;
+  CMOCK_addToOutput_CALLBACK addToOutput_CallbackFunctionPointer;
+  int addToOutput_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE addToOutput_CallInstance;
 } Mock;
 
 extern jmp_buf AbortFrame;
@@ -29,11 +29,11 @@ extern int GlobalVerifyOrder;
 void mock_numberPush_Verify(void)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
-  if (Mock.pushToOutput_IgnoreBool)
-    Mock.pushToOutput_CallInstance = CMOCK_GUTS_NONE;
-  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.pushToOutput_CallInstance, cmock_line, "Function 'pushToOutput' called less times than expected.");
-  if (Mock.pushToOutput_CallbackFunctionPointer != NULL)
-    Mock.pushToOutput_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.addToOutput_IgnoreBool)
+    Mock.addToOutput_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.addToOutput_CallInstance, cmock_line, "Function 'addToOutput' called less times than expected.");
+  if (Mock.addToOutput_CallbackFunctionPointer != NULL)
+    Mock.addToOutput_CallInstance = CMOCK_GUTS_NONE;
 }
 
 void mock_numberPush_Init(void)
@@ -45,58 +45,58 @@ void mock_numberPush_Destroy(void)
 {
   CMock_Guts_MemFreeAll();
   memset(&Mock, 0, sizeof(Mock));
-  Mock.pushToOutput_CallbackFunctionPointer = NULL;
-  Mock.pushToOutput_CallbackCalls = 0;
+  Mock.addToOutput_CallbackFunctionPointer = NULL;
+  Mock.addToOutput_CallbackCalls = 0;
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
 }
 
-void pushToOutput(Token* token)
+void addToOutput(Token* token)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
-  CMOCK_pushToOutput_CALL_INSTANCE* cmock_call_instance = (CMOCK_pushToOutput_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.pushToOutput_CallInstance);
-  Mock.pushToOutput_CallInstance = CMock_Guts_MemNext(Mock.pushToOutput_CallInstance);
-  if (Mock.pushToOutput_IgnoreBool)
+  CMOCK_addToOutput_CALL_INSTANCE* cmock_call_instance = (CMOCK_addToOutput_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.addToOutput_CallInstance);
+  Mock.addToOutput_CallInstance = CMock_Guts_MemNext(Mock.addToOutput_CallInstance);
+  if (Mock.addToOutput_IgnoreBool)
   {
     return;
   }
-  if (Mock.pushToOutput_CallbackFunctionPointer != NULL)
+  if (Mock.addToOutput_CallbackFunctionPointer != NULL)
   {
-    Mock.pushToOutput_CallbackFunctionPointer(token, Mock.pushToOutput_CallbackCalls++);
+    Mock.addToOutput_CallbackFunctionPointer(token, Mock.addToOutput_CallbackCalls++);
     return;
   }
-  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'pushToOutput' called more times than expected.");
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'addToOutput' called more times than expected.");
   cmock_line = cmock_call_instance->LineNumber;
   if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
-    UNITY_TEST_FAIL(cmock_line, "Function 'pushToOutput' called earlier than expected.");
+    UNITY_TEST_FAIL(cmock_line, "Function 'addToOutput' called earlier than expected.");
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
-    UNITY_TEST_FAIL(cmock_line, "Function 'pushToOutput' called later than expected.");
-  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_token), (void*)(token), sizeof(Token), cmock_line, "Function 'pushToOutput' called with unexpected value for argument 'token'.");
+    UNITY_TEST_FAIL(cmock_line, "Function 'addToOutput' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_token), (void*)(token), sizeof(Token), cmock_line, "Function 'addToOutput' called with unexpected value for argument 'token'.");
 }
 
-void CMockExpectParameters_pushToOutput(CMOCK_pushToOutput_CALL_INSTANCE* cmock_call_instance, Token* token)
+void CMockExpectParameters_addToOutput(CMOCK_addToOutput_CALL_INSTANCE* cmock_call_instance, Token* token)
 {
   cmock_call_instance->Expected_token = token;
 }
 
-void pushToOutput_CMockIgnore(void)
+void addToOutput_CMockIgnore(void)
 {
-  Mock.pushToOutput_IgnoreBool = (int)1;
+  Mock.addToOutput_IgnoreBool = (int)1;
 }
 
-void pushToOutput_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token)
+void addToOutput_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_pushToOutput_CALL_INSTANCE));
-  CMOCK_pushToOutput_CALL_INSTANCE* cmock_call_instance = (CMOCK_pushToOutput_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_addToOutput_CALL_INSTANCE));
+  CMOCK_addToOutput_CALL_INSTANCE* cmock_call_instance = (CMOCK_addToOutput_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
-  Mock.pushToOutput_CallInstance = CMock_Guts_MemChain(Mock.pushToOutput_CallInstance, cmock_guts_index);
+  Mock.addToOutput_CallInstance = CMock_Guts_MemChain(Mock.addToOutput_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
-  CMockExpectParameters_pushToOutput(cmock_call_instance, token);
+  CMockExpectParameters_addToOutput(cmock_call_instance, token);
 }
 
-void pushToOutput_StubWithCallback(CMOCK_pushToOutput_CALLBACK Callback)
+void addToOutput_StubWithCallback(CMOCK_addToOutput_CALLBACK Callback)
 {
-  Mock.pushToOutput_CallbackFunctionPointer = Callback;
+  Mock.addToOutput_CallbackFunctionPointer = Callback;
 }
 

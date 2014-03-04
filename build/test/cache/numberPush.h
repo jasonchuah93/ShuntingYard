@@ -9,4 +9,4 @@
 
 
 
-void pushToOutput(Token *token);
+void addToOutput(Token *token);

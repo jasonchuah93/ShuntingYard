@@ -1,11 +1,11 @@
-#ifndef __pushToOutput_H__
-#define __pushToOutput_H__
+#ifndef __addToOutput_H__
+#define __addToOutput_H__
 
 #include "ShuntingYard.h"
 
 //Function declaration
-void pushToOutput(Token *token);
+void addToOutput(Token *token);
 
 
 
-#endif //__pushToOutput_H__
+#endif //__addToOutput_H__

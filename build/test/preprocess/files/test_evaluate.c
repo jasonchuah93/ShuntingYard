@@ -66,7 +66,7 @@ void test_evaluate_2_PLUS_3(){
 
  getToken_CMockExpectAndReturn(40, tokenizer, token1);
 
- pushToOutput_CMockExpect(41, token1);
+ addToOutput_CMockExpect(41, token1);
 
 
 
@@ -78,7 +78,7 @@ void test_evaluate_2_PLUS_3(){
 
  getToken_CMockExpectAndReturn(46, tokenizer, token3);
 
- pushToOutput_CMockExpect(47, token3);
+ addToOutput_CMockExpect(47, token3);
 
 
 
@@ -162,7 +162,7 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 
  getToken_CMockExpectAndReturn(88, tokenizer, token1);
 
- pushToOutput_CMockExpect(89, token1);
+ addToOutput_CMockExpect(89, token1);
 
 
 
@@ -174,7 +174,7 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 
  getToken_CMockExpectAndReturn(94, tokenizer, token3);
 
- pushToOutput_CMockExpect(95, token3);
+ addToOutput_CMockExpect(95, token3);
 
 
 
@@ -186,7 +186,7 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 
  getToken_CMockExpectAndReturn(100, tokenizer, token5);
 
- pushToOutput_CMockExpect(101, token5);
+ addToOutput_CMockExpect(101, token5);
 
 
 
@@ -290,7 +290,7 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 
  getToken_CMockExpectAndReturn(152, tokenizer, token1);
 
- pushToOutput_CMockExpect(153, token1);
+ addToOutput_CMockExpect(153, token1);
 
 
 
@@ -302,7 +302,7 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 
  getToken_CMockExpectAndReturn(158, tokenizer, token3);
 
- pushToOutput_CMockExpect(159, token3);
+ addToOutput_CMockExpect(159, token3);
 
 
 
@@ -314,7 +314,7 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 
  getToken_CMockExpectAndReturn(164, tokenizer, token5);
 
- pushToOutput_CMockExpect(165, token5);
+ addToOutput_CMockExpect(165, token5);
 
 
 
@@ -326,7 +326,7 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 
  getToken_CMockExpectAndReturn(170, tokenizer, token7);
 
- pushToOutput_CMockExpect(171, token7);
+ addToOutput_CMockExpect(171, token7);
 
 
 

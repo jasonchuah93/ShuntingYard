@@ -13,7 +13,7 @@
 	return : token 
 	Mocking function : 1)initTokenizer(); initialize expression into tokenizer
 					   2)getToken();	  get tokens from the tokenizer
-					   3)pushToOutput();    push only number tokens into the number stack
+					   3)addToOutput();    push only number tokens into the number stack
 					   4)operatorPush();  push only operator tokens into the operator stack
 */	
 
@@ -25,13 +25,13 @@ void evaluate (char *expression){
 	tokenizer = initTokenizer(expression);
 	//Get number2 token
 	token = getToken(tokenizer);
-	pushToOutput (token);
+	addToOutput (token);
 	//Get plus token
 	token = getToken(tokenizer);
 	operatorPush(token);
 	//Get number3 token
 	token = getToken(tokenizer);
-	pushToOutput (token);
+	addToOutput (token);
 	
 }
 
@@ -43,7 +43,7 @@ void evaluate (char *expression){
 	return : token 
 	Mocking function : 1)initTokenizer(); initialize expression into tokenizer
 					   2)getToken();	  get tokens from the tokenizer
-					   3)pushToOutput();    push only number tokens into the number stack
+					   3)addToOutput();    push only number tokens into the number stack
 					   4)operatorPush();  push only operator tokens into the operator stack
 */	
 
@@ -55,19 +55,19 @@ void evaluate1 (char *expression){
 	tokenizer = initTokenizer(expression);
 	//Get number4 token
 	token = getToken(tokenizer);
-	pushToOutput(token);
+	addToOutput(token);
 	//Get plus token
 	token = getToken(tokenizer);
 	operatorPush(token);
 	//Get number5 token
 	token = getToken(tokenizer);
-	pushToOutput(token);
+	addToOutput(token);
 	//Get multiply token
 	token = getToken(tokenizer);
 	operatorPush(token);
 	//Get number6 token
 	token = getToken(tokenizer);
-	pushToOutput(token);
+	addToOutput(token);
 	
 }
 
@@ -79,7 +79,7 @@ void evaluate1 (char *expression){
 	return : token 
 	Mocking function : 1)initTokenizer(); initialize expression into tokenizer
 					   2)getToken();	  get tokens from the tokenizer
-					   3)pushToOutput();    push only number tokens into the number stack
+					   3)addToOutput();    push only number tokens into the number stack
 					   4)operatorPush();  push only operator tokens into the operator stack
 */	
 
@@ -90,23 +90,23 @@ void evaluate2 (char *expression){
 	tokenizer = initTokenizer(expression);
 	//Get number3 token
 	token = getToken(tokenizer);
-	pushToOutput(token);
+	addToOutput(token);
 	//Get plus token
 	token = getToken(tokenizer);
 	operatorPush(token);
 	//Get number7 token
 	token = getToken(tokenizer);
-	pushToOutput(token);
+	addToOutput(token);
 	//Get plus token
 	token = getToken(tokenizer);
 	operatorPush(token);
 	//Get number8 token
 	token = getToken(tokenizer);
-	pushToOutput(token);
+	addToOutput(token);
 	//Get divide token
 	token = getToken(tokenizer);
 	operatorPush(token);
 	//Get number9 token
 	token = getToken(tokenizer);
-	pushToOutput(token);
+	addToOutput(token);
 }
