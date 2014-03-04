@@ -45,7 +45,7 @@ void test_evaluate_2_PLUS_3(){
 	//Get token3 for number 3
 	getToken_ExpectAndReturn(tokenizer,token3);
 	numberPush_Expect(token3);
-	
+	//Call funtion
 	evaluate("2+3");
 }
 
@@ -90,7 +90,7 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 	//Get token2 for plus 
 	getToken_ExpectAndReturn(tokenizer,token2);
 	operatorPush_Expect(token2);
-	//Get token3 for number 
+	//Get token3 for number 5
 	getToken_ExpectAndReturn(tokenizer,token3);
 	numberPush_Expect(token3);
 	//Get token4 for multiply 
@@ -99,7 +99,79 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 	//Get token5 for number 6
 	getToken_ExpectAndReturn(tokenizer,token5);
 	numberPush_Expect(token5);
-	
+	//Call funtion
 	evaluate1("4+5*6");
+}
 
-}		
+void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
+	//Initialize tokenizer and token
+	Tokenizer *tokenizer = malloc(sizeof(Tokenizer));
+	tokenizer->rawString = "3|7+8/9";
+	tokenizer->startIndex = 0;
+	tokenizer->length = 7;
+	
+	Number *number3 = malloc(sizeof(Number));
+	number3->type= NUMBER;
+	number3->value=3;
+	Token *token1 = (Token*)number3;
+	
+	Operator *bitwiseOR = malloc(sizeof(Operator));
+	bitwiseOR->type= OPERATOR;
+	bitwiseOR->ope = BITWISE_OR;
+	Token *token2 = (Token*)bitwiseOR;
+	
+	Number *number7 = malloc(sizeof(Number));
+	number7->type= NUMBER;
+	number7->value=7;
+	Token *token3 = (Token*)number7;
+	
+	Operator *plus = malloc(sizeof(Operator));
+	plus->type= OPERATOR;
+	plus->ope = ADD;
+	Token *token4 = (Token*)plus;
+	
+	Number *number8 = malloc(sizeof(Number));
+	number8->type= NUMBER;
+	number8->value=8;
+	Token *token5 = (Token*)number8;
+	
+	Operator *division = malloc(sizeof(Operator));
+	division->type= OPERATOR;
+	division->ope = DIVIDE;
+	Token *token6 = (Token*)division;
+		
+	Number *number9 = malloc(sizeof(Number));
+	number9->type= NUMBER;
+	number9->value=9;
+	Token *token7 = (Token*)number9;
+	
+	//Evaluate the function
+	//Initialize tokenizer
+	initTokenizer_ExpectAndReturn("3|7+8/9",tokenizer);
+	//Get token1 for number 3 
+	getToken_ExpectAndReturn(tokenizer,token1);
+	numberPush_Expect(token1);
+	//Get token2 for bitwise OR 
+	getToken_ExpectAndReturn(tokenizer,token2);
+	operatorPush_Expect(token2);
+	//Get token3 for number 7
+	getToken_ExpectAndReturn(tokenizer,token3);
+	numberPush_Expect(token3);
+	//Get token4 for plus 
+	getToken_ExpectAndReturn(tokenizer,token4);
+	operatorPush_Expect(token4);
+	//Get token5 for number 8
+	getToken_ExpectAndReturn(tokenizer,token5);
+	numberPush_Expect(token5);
+	//Get token4 for divide
+	getToken_ExpectAndReturn(tokenizer,token6);
+	operatorPush_Expect(token6);
+	//Get token5 for number 9
+	getToken_ExpectAndReturn(tokenizer,token7);
+	numberPush_Expect(token7);
+	
+	//Call funtion
+	evaluate2("3|7+8/9");
+	
+}	
+

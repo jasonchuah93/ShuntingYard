@@ -3,7 +3,7 @@
 
 typedef enum {NUMBER,OPERATOR,IDENTIFIER}Token;
 //Will be update soon.
-typedef enum {ADD,SUBTRACT,DIVIDE,MULTIPLY,POST_INCREMENT,PRE_INCREMENT,POST_DECREMENT,PRE_DECREMENT}Operation;
+typedef enum {ADD,SUBTRACT,DIVIDE,MULTIPLY,POST_INCREMENT,PRE_INCREMENT,POST_DECREMENT,PRE_DECREMENT,BITWISE_OR}Operation;
 
 //This structure store the converted version of string
 typedef struct {

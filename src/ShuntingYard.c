@@ -69,5 +69,44 @@ void evaluate1 (char *expression){
 	token = getToken(tokenizer);
 	numberPush(token);
 	
+}
+
+/*
+	This function is to evaluate expression "3|7+8/9"
 	
+	input  : expression contains "3|7+8/9"
+	output : none
+	return : token 
+	Mocking function : 1)initTokenizer(); initialize expression into tokenizer
+					   2)getToken();	  get tokens from the tokenizer
+					   3)numberPush();    push only number tokens into the number stack
+					   4)operatorPush();  push only operator tokens into the operator stack
+*/	
+
+void evaluate2 (char *expression){
+	Tokenizer *tokenizer;
+	Token *token;
+	//Initialize tokenizer
+	tokenizer = initTokenizer(expression);
+	//Get number3 token
+	token = getToken(tokenizer);
+	numberPush(token);
+	//Get plus token
+	token = getToken(tokenizer);
+	operatorPush(token);
+	//Get number7 token
+	token = getToken(tokenizer);
+	numberPush(token);
+	//Get plus token
+	token = getToken(tokenizer);
+	operatorPush(token);
+	//Get number8 token
+	token = getToken(tokenizer);
+	numberPush(token);
+	//Get divide token
+	token = getToken(tokenizer);
+	operatorPush(token);
+	//Get number9 token
+	token = getToken(tokenizer);
+	numberPush(token);
 }

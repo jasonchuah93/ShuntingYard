@@ -40,6 +40,7 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_evaluate_2_PLUS_3(void);
 extern void test_evaluate_4_PLUS_5_MULTIPLY_6(void);
+extern void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(void);
 
 
 //=======Mock Management=====
@@ -86,6 +87,7 @@ int main(void)
   UnityBegin();
   RUN_TEST(test_evaluate_2_PLUS_3, 14);
   RUN_TEST(test_evaluate_4_PLUS_5_MULTIPLY_6, 52);
+  RUN_TEST(test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9, 106);
 
   return (UnityEnd());
 }

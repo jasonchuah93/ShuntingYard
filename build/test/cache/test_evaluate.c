@@ -192,6 +192,146 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 
  evaluate1("4+5*6");
 
+}
+
+
+
+void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
+
+
+
+ Tokenizer *tokenizer = malloc(sizeof(Tokenizer));
+
+ tokenizer->rawString = "3|7+8/9";
+
+ tokenizer->startIndex = 0;
+
+ tokenizer->length = 7;
+
+
+
+ Number *number3 = malloc(sizeof(Number));
+
+ number3->type= NUMBER;
+
+ number3->value=3;
+
+ Token *token1 = (Token*)number3;
+
+
+
+ Operator *bitwiseOR = malloc(sizeof(Operator));
+
+ bitwiseOR->type= OPERATOR;
+
+ bitwiseOR->ope = BITWISE_OR;
+
+ Token *token2 = (Token*)bitwiseOR;
+
+
+
+ Number *number7 = malloc(sizeof(Number));
+
+ number7->type= NUMBER;
+
+ number7->value=7;
+
+ Token *token3 = (Token*)number7;
+
+
+
+ Operator *plus = malloc(sizeof(Operator));
+
+ plus->type= OPERATOR;
+
+ plus->ope = ADD;
+
+ Token *token4 = (Token*)plus;
+
+
+
+ Number *number8 = malloc(sizeof(Number));
+
+ number8->type= NUMBER;
+
+ number8->value=8;
+
+ Token *token5 = (Token*)number8;
+
+
+
+ Operator *division = malloc(sizeof(Operator));
+
+ division->type= OPERATOR;
+
+ division->ope = DIVIDE;
+
+ Token *token6 = (Token*)division;
+
+
+
+ Number *number9 = malloc(sizeof(Number));
+
+ number9->type= NUMBER;
+
+ number9->value=9;
+
+ Token *token7 = (Token*)number9;
+
+
+
+
+
+
+
+ initTokenizer_CMockExpectAndReturn(150, "3|7+8/9", tokenizer);
+
+
+
+ getToken_CMockExpectAndReturn(152, tokenizer, token1);
+
+ numberPush_CMockExpect(153, token1);
+
+
+
+ getToken_CMockExpectAndReturn(155, tokenizer, token2);
+
+ operatorPush_CMockExpect(156, token2);
+
+
+
+ getToken_CMockExpectAndReturn(158, tokenizer, token3);
+
+ numberPush_CMockExpect(159, token3);
+
+
+
+ getToken_CMockExpectAndReturn(161, tokenizer, token4);
+
+ operatorPush_CMockExpect(162, token4);
+
+
+
+ getToken_CMockExpectAndReturn(164, tokenizer, token5);
+
+ numberPush_CMockExpect(165, token5);
+
+
+
+ getToken_CMockExpectAndReturn(167, tokenizer, token6);
+
+ operatorPush_CMockExpect(168, token6);
+
+
+
+ getToken_CMockExpectAndReturn(170, tokenizer, token7);
+
+ numberPush_CMockExpect(171, token7);
+
+
+
+ evaluate2("3|7+8/9");
+
 
 
 }
