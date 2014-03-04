@@ -28,14 +28,7 @@ typedef struct {
 	char *name;
 }Identifier;
 
-
-Token verifyTokenTypeFromUnknownToken(Token *unknownToken);
-
-
-
-
-
-
+void evaluate (char *expression);
 
 #endif //__SHUNTING_YARD_H__
 

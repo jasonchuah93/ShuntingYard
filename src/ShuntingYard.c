@@ -1,66 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
 #include <string.h>
 #include "ShuntingYard.h"
-#include "stack.h"
-#include "push.h"
-#include "pop.h"
+#include "initializeToken.h"
+#include "getToken.h"
 
-Token verifyTokenTypeFromUnknownToken(Token *unknownToken){}
-
- stackT *initStack(char *expression, int maxSize){
-	stackT *contents = malloc(sizeof(stackT));
-	contents->data = expression;
-	contents->maxSize = maxSize;
+/*
+	This function is to evaluate expression "2+3"
 	
-	return contents;
-}
+	input  : expression contains "2+3"
+	output : none
+	return : token 
+	Mocking function : 1)initTokenizer(); initialize expression into tokenizer
+					   2)getToken();	  get tokens from the tokenizer
+					   3)numberPush();    push only number tokens into the number stack
+					   4)operatorPush();  push only operator tokens into the operator stack
+*/	
 
-stackT *destroyStack(char *expression,int maxSize){
-	stackT *contents = malloc(sizeof(stackT));
-	contents->data = NULL;
-	contents->maxSize = maxSize;
+void evaluate (char *expression){
 	
-	return contents;
-}
-
-stackT *stackIsEmpty(char *expression,int maxSize){
-	stackT *contents = malloc(sizeof(stackT));
-	contents->data = " ";
-	contents->maxSize = maxSize;
-	
-	return contents;
-}
-
-stackT *stackIsFull(char *expression, int maxSize){
-	stackT *contents = malloc(sizeof(stackT));
-	contents->data = "2+3*4/5+6";
-	contents->maxSize = maxSize;
-	
-	return contents;
-
-}
-
-stackTokens *numberStack ( int value1 ){
-	
-	stackTokens numStack;
-	numStack.value1 = value1;
-	Number *numToken= {2};
-	Token *newToken = (Token*)(numToken);
-	stackTokens *contents = malloc(sizeof(stackTokens));
-	contents->value1 = newToken;
-	return contents;
+	Tokenizer *tokenizer;
+	Token *token;
+	//Mocking function 
+	tokenizer = initTokenizer(expression);
+	token = getToken(tokenizer);
+	numberPush (token);
+	token = getToken(tokenizer);
+	operatorPush(token);
+	token = getToken(tokenizer);
+	numberPush (token);
 	
 }
-
-
-
-
-
-
-
-		
-
-
-

@@ -13,9 +13,9 @@ void mock_getToken_Verify(void);
 
 #define getToken_IgnoreAndReturn(cmock_retval) getToken_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void getToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_return);
-#define getToken_ExpectAndReturn(testTokenizer, cmock_retval) getToken_CMockExpectAndReturn(__LINE__, testTokenizer, cmock_retval)
-void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Tokenizer* testTokenizer, Token* cmock_to_return);
-typedef Token* (* CMOCK_getToken_CALLBACK)(Tokenizer* testTokenizer, int cmock_num_calls);
+#define getToken_ExpectAndReturn(tokenizer, cmock_retval) getToken_CMockExpectAndReturn(__LINE__, tokenizer, cmock_retval)
+void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Tokenizer* tokenizer, Token* cmock_to_return);
+typedef Token* (* CMOCK_getToken_CALLBACK)(Tokenizer* tokenizer, int cmock_num_calls);
 void getToken_StubWithCallback(CMOCK_getToken_CALLBACK Callback);
 
 #endif
