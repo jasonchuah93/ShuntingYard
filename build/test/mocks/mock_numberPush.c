@@ -6,20 +6,20 @@
 #include "cmock.h"
 #include "mock_numberPush.h"
 
-typedef struct _CMOCK_numberPush_CALL_INSTANCE
+typedef struct _CMOCK_pushToOutput_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
   int CallOrder;
   Token* Expected_token;
 
-} CMOCK_numberPush_CALL_INSTANCE;
+} CMOCK_pushToOutput_CALL_INSTANCE;
 
 static struct mock_numberPushInstance
 {
-  int numberPush_IgnoreBool;
-  CMOCK_numberPush_CALLBACK numberPush_CallbackFunctionPointer;
-  int numberPush_CallbackCalls;
-  CMOCK_MEM_INDEX_TYPE numberPush_CallInstance;
+  int pushToOutput_IgnoreBool;
+  CMOCK_pushToOutput_CALLBACK pushToOutput_CallbackFunctionPointer;
+  int pushToOutput_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE pushToOutput_CallInstance;
 } Mock;
 
 extern jmp_buf AbortFrame;
@@ -29,11 +29,11 @@ extern int GlobalVerifyOrder;
 void mock_numberPush_Verify(void)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
-  if (Mock.numberPush_IgnoreBool)
-    Mock.numberPush_CallInstance = CMOCK_GUTS_NONE;
-  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.numberPush_CallInstance, cmock_line, "Function 'numberPush' called less times than expected.");
-  if (Mock.numberPush_CallbackFunctionPointer != NULL)
-    Mock.numberPush_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.pushToOutput_IgnoreBool)
+    Mock.pushToOutput_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.pushToOutput_CallInstance, cmock_line, "Function 'pushToOutput' called less times than expected.");
+  if (Mock.pushToOutput_CallbackFunctionPointer != NULL)
+    Mock.pushToOutput_CallInstance = CMOCK_GUTS_NONE;
 }
 
 void mock_numberPush_Init(void)
@@ -45,58 +45,58 @@ void mock_numberPush_Destroy(void)
 {
   CMock_Guts_MemFreeAll();
   memset(&Mock, 0, sizeof(Mock));
-  Mock.numberPush_CallbackFunctionPointer = NULL;
-  Mock.numberPush_CallbackCalls = 0;
+  Mock.pushToOutput_CallbackFunctionPointer = NULL;
+  Mock.pushToOutput_CallbackCalls = 0;
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
 }
 
-void numberPush(Token* token)
+void pushToOutput(Token* token)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
-  CMOCK_numberPush_CALL_INSTANCE* cmock_call_instance = (CMOCK_numberPush_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.numberPush_CallInstance);
-  Mock.numberPush_CallInstance = CMock_Guts_MemNext(Mock.numberPush_CallInstance);
-  if (Mock.numberPush_IgnoreBool)
+  CMOCK_pushToOutput_CALL_INSTANCE* cmock_call_instance = (CMOCK_pushToOutput_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.pushToOutput_CallInstance);
+  Mock.pushToOutput_CallInstance = CMock_Guts_MemNext(Mock.pushToOutput_CallInstance);
+  if (Mock.pushToOutput_IgnoreBool)
   {
     return;
   }
-  if (Mock.numberPush_CallbackFunctionPointer != NULL)
+  if (Mock.pushToOutput_CallbackFunctionPointer != NULL)
   {
-    Mock.numberPush_CallbackFunctionPointer(token, Mock.numberPush_CallbackCalls++);
+    Mock.pushToOutput_CallbackFunctionPointer(token, Mock.pushToOutput_CallbackCalls++);
     return;
   }
-  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'numberPush' called more times than expected.");
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'pushToOutput' called more times than expected.");
   cmock_line = cmock_call_instance->LineNumber;
   if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
-    UNITY_TEST_FAIL(cmock_line, "Function 'numberPush' called earlier than expected.");
+    UNITY_TEST_FAIL(cmock_line, "Function 'pushToOutput' called earlier than expected.");
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
-    UNITY_TEST_FAIL(cmock_line, "Function 'numberPush' called later than expected.");
-  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_token), (void*)(token), sizeof(Token), cmock_line, "Function 'numberPush' called with unexpected value for argument 'token'.");
+    UNITY_TEST_FAIL(cmock_line, "Function 'pushToOutput' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_token), (void*)(token), sizeof(Token), cmock_line, "Function 'pushToOutput' called with unexpected value for argument 'token'.");
 }
 
-void CMockExpectParameters_numberPush(CMOCK_numberPush_CALL_INSTANCE* cmock_call_instance, Token* token)
+void CMockExpectParameters_pushToOutput(CMOCK_pushToOutput_CALL_INSTANCE* cmock_call_instance, Token* token)
 {
   cmock_call_instance->Expected_token = token;
 }
 
-void numberPush_CMockIgnore(void)
+void pushToOutput_CMockIgnore(void)
 {
-  Mock.numberPush_IgnoreBool = (int)1;
+  Mock.pushToOutput_IgnoreBool = (int)1;
 }
 
-void numberPush_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token)
+void pushToOutput_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_numberPush_CALL_INSTANCE));
-  CMOCK_numberPush_CALL_INSTANCE* cmock_call_instance = (CMOCK_numberPush_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_pushToOutput_CALL_INSTANCE));
+  CMOCK_pushToOutput_CALL_INSTANCE* cmock_call_instance = (CMOCK_pushToOutput_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
-  Mock.numberPush_CallInstance = CMock_Guts_MemChain(Mock.numberPush_CallInstance, cmock_guts_index);
+  Mock.pushToOutput_CallInstance = CMock_Guts_MemChain(Mock.pushToOutput_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
-  CMockExpectParameters_numberPush(cmock_call_instance, token);
+  CMockExpectParameters_pushToOutput(cmock_call_instance, token);
 }
 
-void numberPush_StubWithCallback(CMOCK_numberPush_CALLBACK Callback)
+void pushToOutput_StubWithCallback(CMOCK_pushToOutput_CALLBACK Callback)
 {
-  Mock.numberPush_CallbackFunctionPointer = Callback;
+  Mock.pushToOutput_CallbackFunctionPointer = Callback;
 }
 

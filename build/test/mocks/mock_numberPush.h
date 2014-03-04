@@ -11,11 +11,11 @@ void mock_numberPush_Verify(void);
 
 
 
-#define numberPush_Ignore() numberPush_CMockIgnore()
-void numberPush_CMockIgnore(void);
-#define numberPush_Expect(token) numberPush_CMockExpect(__LINE__, token)
-void numberPush_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token);
-typedef void (* CMOCK_numberPush_CALLBACK)(Token* token, int cmock_num_calls);
-void numberPush_StubWithCallback(CMOCK_numberPush_CALLBACK Callback);
+#define pushToOutput_Ignore() pushToOutput_CMockIgnore()
+void pushToOutput_CMockIgnore(void);
+#define pushToOutput_Expect(token) pushToOutput_CMockExpect(__LINE__, token)
+void pushToOutput_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token);
+typedef void (* CMOCK_pushToOutput_CALLBACK)(Token* token, int cmock_num_calls);
+void pushToOutput_StubWithCallback(CMOCK_pushToOutput_CALLBACK Callback);
 
 #endif

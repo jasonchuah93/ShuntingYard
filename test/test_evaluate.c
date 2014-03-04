@@ -38,13 +38,13 @@ void test_evaluate_2_PLUS_3(){
 	initTokenizer_ExpectAndReturn("2+3",tokenizer);
 	//Get token1 for number 2 
 	getToken_ExpectAndReturn(tokenizer,token1);
-	numberPush_Expect(token1);
+	pushToOutput_Expect(token1);
 	//Get token2 for plus 
 	getToken_ExpectAndReturn(tokenizer,token2);
 	operatorPush_Expect(token2);
 	//Get token3 for number 3
 	getToken_ExpectAndReturn(tokenizer,token3);
-	numberPush_Expect(token3);
+	pushToOutput_Expect(token3);
 	//Call funtion
 	evaluate("2+3");
 }
@@ -86,19 +86,19 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 	initTokenizer_ExpectAndReturn("4+5*6",tokenizer);
 	//Get token1 for number 4 
 	getToken_ExpectAndReturn(tokenizer,token1);
-	numberPush_Expect(token1);
+	pushToOutput_Expect(token1);
 	//Get token2 for plus 
 	getToken_ExpectAndReturn(tokenizer,token2);
 	operatorPush_Expect(token2);
 	//Get token3 for number 5
 	getToken_ExpectAndReturn(tokenizer,token3);
-	numberPush_Expect(token3);
+	pushToOutput_Expect(token3);
 	//Get token4 for multiply 
 	getToken_ExpectAndReturn(tokenizer,token4);
 	operatorPush_Expect(token4);
 	//Get token5 for number 6
 	getToken_ExpectAndReturn(tokenizer,token5);
-	numberPush_Expect(token5);
+	pushToOutput_Expect(token5);
 	//Call funtion
 	evaluate1("4+5*6");
 }
@@ -150,25 +150,25 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 	initTokenizer_ExpectAndReturn("3|7+8/9",tokenizer);
 	//Get token1 for number 3 
 	getToken_ExpectAndReturn(tokenizer,token1);
-	numberPush_Expect(token1);
+	pushToOutput_Expect(token1);
 	//Get token2 for bitwise OR 
 	getToken_ExpectAndReturn(tokenizer,token2);
 	operatorPush_Expect(token2);
 	//Get token3 for number 7
 	getToken_ExpectAndReturn(tokenizer,token3);
-	numberPush_Expect(token3);
+	pushToOutput_Expect(token3);
 	//Get token4 for plus 
 	getToken_ExpectAndReturn(tokenizer,token4);
 	operatorPush_Expect(token4);
 	//Get token5 for number 8
 	getToken_ExpectAndReturn(tokenizer,token5);
-	numberPush_Expect(token5);
+	pushToOutput_Expect(token5);
 	//Get token4 for divide
 	getToken_ExpectAndReturn(tokenizer,token6);
 	operatorPush_Expect(token6);
 	//Get token5 for number 9
 	getToken_ExpectAndReturn(tokenizer,token7);
-	numberPush_Expect(token7);
+	pushToOutput_Expect(token7);
 	
 	//Call funtion
 	evaluate2("3|7+8/9");
