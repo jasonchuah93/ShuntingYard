@@ -1,11 +1,11 @@
-#ifndef __OPERATORPUSH_H__
-#define __OPERATORPUSH_H__
+#ifndef __OPERATORPOP_H__
+#define __OPERATORPOP_H__
 
 #include "ShuntingYard.h"
 
 //Function declaration
-void operatorPush(Token *token);
+void operatorPop(Token *token);
 
 
 
-#endif //__OPERATORPUSH_H__
+#endif //__OPERATORPOP_H__
