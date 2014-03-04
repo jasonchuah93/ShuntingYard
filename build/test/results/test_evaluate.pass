@@ -6,11 +6,14 @@
 - :test: test_evaluate_2_PLUS_3
   :line: 14
   :message: ''
+- :test: test_evaluate_4_PLUS_5_MULTIPLY_6
+  :line: 52
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 1
+  :total: 2
+  :passed: 2
   :failed: 0
   :ignored: 0
 :stdout: []
