@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "mock_operatorPush.h"
+#include "mock_operatorPop.h"
 #include "mock_numberPush.h"
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
@@ -60,29 +61,43 @@ void test_evaluate_2_PLUS_3(){
 
 
 
- initTokenizer_CMockExpectAndReturn(38, "2+3", tokenizer);
+ initTokenizer_CMockExpectAndReturn(39, "2+3", tokenizer);
 
 
 
- getToken_CMockExpectAndReturn(40, tokenizer, token1);
+ getToken_CMockExpectAndReturn(41, tokenizer, token1);
 
- addToOutput_CMockExpect(41, token1);
-
-
-
- getToken_CMockExpectAndReturn(43, tokenizer, token2);
-
- operatorPush_CMockExpect(44, token2);
+ addToOutput_CMockExpect(42, token1);
 
 
 
- getToken_CMockExpectAndReturn(46, tokenizer, token3);
+ getToken_CMockExpectAndReturn(44, tokenizer, token2);
 
- addToOutput_CMockExpect(47, token3);
+ operatorPush_CMockExpect(45, token2);
+
+
+
+ getToken_CMockExpectAndReturn(47, tokenizer, token3);
+
+ addToOutput_CMockExpect(48, token3);
+
+
 
 
 
  evaluate("2+3");
+
+
+
+
+
+ UnityAssertEqualString((const char*)("2+3"), (const char*)(tokenizer->rawString), (((void *)0)), (_U_UINT)54);
+
+ UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((number2->value)), (((void *)0)), (_U_UINT)55, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((ADD)), (_U_SINT)((plus->ope)), (((void *)0)), (_U_UINT)56, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((number3->value)), (((void *)0)), (_U_UINT)57, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -156,41 +171,59 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 
 
 
- initTokenizer_CMockExpectAndReturn(86, "4+5*6", tokenizer);
+ initTokenizer_CMockExpectAndReturn(94, "4+5*6", tokenizer);
 
 
 
- getToken_CMockExpectAndReturn(88, tokenizer, token1);
+ getToken_CMockExpectAndReturn(96, tokenizer, token1);
 
- addToOutput_CMockExpect(89, token1);
-
-
-
- getToken_CMockExpectAndReturn(91, tokenizer, token2);
-
- operatorPush_CMockExpect(92, token2);
+ addToOutput_CMockExpect(97, token1);
 
 
 
- getToken_CMockExpectAndReturn(94, tokenizer, token3);
+ getToken_CMockExpectAndReturn(99, tokenizer, token2);
 
- addToOutput_CMockExpect(95, token3);
-
-
-
- getToken_CMockExpectAndReturn(97, tokenizer, token4);
-
- operatorPush_CMockExpect(98, token4);
+ operatorPush_CMockExpect(100, token2);
 
 
 
- getToken_CMockExpectAndReturn(100, tokenizer, token5);
+ getToken_CMockExpectAndReturn(102, tokenizer, token3);
 
- addToOutput_CMockExpect(101, token5);
+ addToOutput_CMockExpect(103, token3);
+
+
+
+ getToken_CMockExpectAndReturn(105, tokenizer, token4);
+
+ operatorPush_CMockExpect(106, token4);
+
+
+
+ getToken_CMockExpectAndReturn(108, tokenizer, token5);
+
+ addToOutput_CMockExpect(109, token5);
+
+
 
 
 
  evaluate1("4+5*6");
+
+
+
+
+
+ UnityAssertEqualString((const char*)("4+5*6"), (const char*)(tokenizer->rawString), (((void *)0)), (_U_UINT)115);
+
+ UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((number4->value)), (((void *)0)), (_U_UINT)116, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((ADD)), (_U_SINT)((plus->ope)), (((void *)0)), (_U_UINT)117, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((number5->value)), (((void *)0)), (_U_UINT)118, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((MULTIPLY)), (_U_SINT)((multiply->ope)), (((void *)0)), (_U_UINT)119, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((number6->value)), (((void *)0)), (_U_UINT)120, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -284,49 +317,49 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 
 
 
- initTokenizer_CMockExpectAndReturn(150, "3|7+8/9", tokenizer);
+ initTokenizer_CMockExpectAndReturn(167, "3|7+8/9", tokenizer);
 
 
 
- getToken_CMockExpectAndReturn(152, tokenizer, token1);
+ getToken_CMockExpectAndReturn(169, tokenizer, token1);
 
- addToOutput_CMockExpect(153, token1);
-
-
-
- getToken_CMockExpectAndReturn(155, tokenizer, token2);
-
- operatorPush_CMockExpect(156, token2);
+ addToOutput_CMockExpect(170, token1);
 
 
 
- getToken_CMockExpectAndReturn(158, tokenizer, token3);
+ getToken_CMockExpectAndReturn(172, tokenizer, token2);
 
- addToOutput_CMockExpect(159, token3);
-
-
-
- getToken_CMockExpectAndReturn(161, tokenizer, token4);
-
- operatorPush_CMockExpect(162, token4);
+ operatorPush_CMockExpect(173, token2);
 
 
 
- getToken_CMockExpectAndReturn(164, tokenizer, token5);
+ getToken_CMockExpectAndReturn(175, tokenizer, token3);
 
- addToOutput_CMockExpect(165, token5);
-
-
-
- getToken_CMockExpectAndReturn(167, tokenizer, token6);
-
- operatorPush_CMockExpect(168, token6);
+ addToOutput_CMockExpect(176, token3);
 
 
 
- getToken_CMockExpectAndReturn(170, tokenizer, token7);
+ getToken_CMockExpectAndReturn(178, tokenizer, token4);
 
- addToOutput_CMockExpect(171, token7);
+ operatorPush_CMockExpect(179, token4);
+
+
+
+ getToken_CMockExpectAndReturn(181, tokenizer, token5);
+
+ addToOutput_CMockExpect(182, token5);
+
+
+
+ getToken_CMockExpectAndReturn(184, tokenizer, token6);
+
+ operatorPush_CMockExpect(185, token6);
+
+
+
+ getToken_CMockExpectAndReturn(187, tokenizer, token7);
+
+ addToOutput_CMockExpect(188, token7);
 
 
 
@@ -335,5 +368,23 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
  evaluate2("3|7+8/9");
 
 
+
+
+
+ UnityAssertEqualString((const char*)("3|7+8/9"), (const char*)(tokenizer->rawString), (((void *)0)), (_U_UINT)194);
+
+ UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((number3->value)), (((void *)0)), (_U_UINT)195, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((BITWISE_OR)), (_U_SINT)((bitwiseOR->ope)), (((void *)0)), (_U_UINT)196, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((number7->value)), (((void *)0)), (_U_UINT)197, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((ADD)), (_U_SINT)((plus->ope)), (((void *)0)), (_U_UINT)198, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((8)), (_U_SINT)((number8->value)), (((void *)0)), (_U_UINT)199, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((DIVIDE)), (_U_SINT)((division->ope)), (((void *)0)), (_U_UINT)200, UNITY_DISPLAY_STYLE_INT);
+
+ UnityAssertEqualNumber((_U_SINT)((9)), (_U_SINT)((number9->value)), (((void *)0)), (_U_UINT)201, UNITY_DISPLAY_STYLE_INT);
 
 }

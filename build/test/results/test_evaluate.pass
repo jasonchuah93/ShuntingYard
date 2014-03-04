@@ -4,13 +4,13 @@
   :file: test_evaluate.c
 :successes:
 - :test: test_evaluate_2_PLUS_3
-  :line: 14
+  :line: 15
   :message: ''
 - :test: test_evaluate_4_PLUS_5_MULTIPLY_6
-  :line: 52
+  :line: 60
   :message: ''
 - :test: test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9
-  :line: 106
+  :line: 123
   :message: ''
 :failures: []
 :ignores: []

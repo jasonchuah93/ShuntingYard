@@ -7,6 +7,7 @@
 #include "mock_getToken.h"
 #include "mock_numberPush.h"
 #include "mock_operatorPush.h"
+#include "mock_operatorPop.h"
 
 void setUp(){}
 void tearDown() {}
@@ -36,17 +37,24 @@ void test_evaluate_2_PLUS_3(){
 	//Evaluate the function 
 	//Initialize tokenizer
 	initTokenizer_ExpectAndReturn("2+3",tokenizer);
-	//Get token1 for number 2 
+	//Get token1 for number 2 and add to ouput
 	getToken_ExpectAndReturn(tokenizer,token1);
 	addToOutput_Expect(token1);
-	//Get token2 for plus 
+	//Get token2 for plus and push to stack
 	getToken_ExpectAndReturn(tokenizer,token2);
 	operatorPush_Expect(token2);
-	//Get token3 for number 3
+	//Get token3 for number 3 and add to output
 	getToken_ExpectAndReturn(tokenizer,token3);
 	addToOutput_Expect(token3);
+	
 	//Call funtion
 	evaluate("2+3");
+	
+	//Unit Test 
+	TEST_ASSERT_EQUAL_STRING("2+3",tokenizer->rawString);
+	TEST_ASSERT_EQUAL(2,number2->value);
+	TEST_ASSERT_EQUAL(ADD,plus->ope);
+	TEST_ASSERT_EQUAL(3,number3->value);
 }
 
 void test_evaluate_4_PLUS_5_MULTIPLY_6(){
@@ -84,23 +92,32 @@ void test_evaluate_4_PLUS_5_MULTIPLY_6(){
 	//Evaluate the function
 	//Initialize tokenizer
 	initTokenizer_ExpectAndReturn("4+5*6",tokenizer);
-	//Get token1 for number 4 
+	//Get token1 for number 4 and add to output
 	getToken_ExpectAndReturn(tokenizer,token1);
 	addToOutput_Expect(token1);
-	//Get token2 for plus 
+	//Get token2 for plus and push to stack
 	getToken_ExpectAndReturn(tokenizer,token2);
 	operatorPush_Expect(token2);
-	//Get token3 for number 5
+	//Get token3 for number 5 and add to output
 	getToken_ExpectAndReturn(tokenizer,token3);
 	addToOutput_Expect(token3);
-	//Get token4 for multiply 
+	//Get token4 for multiply and push to stack
 	getToken_ExpectAndReturn(tokenizer,token4);
 	operatorPush_Expect(token4);
-	//Get token5 for number 6
+	//Get token5 for number 6 and add to output
 	getToken_ExpectAndReturn(tokenizer,token5);
 	addToOutput_Expect(token5);
+	
 	//Call funtion
 	evaluate1("4+5*6");
+	
+	//Unit test
+	TEST_ASSERT_EQUAL_STRING("4+5*6",tokenizer->rawString);
+	TEST_ASSERT_EQUAL(4,number4->value);
+	TEST_ASSERT_EQUAL(ADD,plus->ope);
+	TEST_ASSERT_EQUAL(5,number5->value);
+	TEST_ASSERT_EQUAL(MULTIPLY,multiply->ope);
+	TEST_ASSERT_EQUAL(6,number6->value);
 }
 
 void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
@@ -148,30 +165,39 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 	//Evaluate the function
 	//Initialize tokenizer
 	initTokenizer_ExpectAndReturn("3|7+8/9",tokenizer);
-	//Get token1 for number 3 
+	//Get token1 for number 3 and add to output
 	getToken_ExpectAndReturn(tokenizer,token1);
 	addToOutput_Expect(token1);
-	//Get token2 for bitwise OR 
+	//Get token2 for bitwise OR and push to stack
 	getToken_ExpectAndReturn(tokenizer,token2);
 	operatorPush_Expect(token2);
-	//Get token3 for number 7
+	//Get token3 for number 7 and add to output
 	getToken_ExpectAndReturn(tokenizer,token3);
 	addToOutput_Expect(token3);
-	//Get token4 for plus 
+	//Get token4 for plus and push to stack
 	getToken_ExpectAndReturn(tokenizer,token4);
 	operatorPush_Expect(token4);
-	//Get token5 for number 8
+	//Get token5 for number 8 and add to output
 	getToken_ExpectAndReturn(tokenizer,token5);
 	addToOutput_Expect(token5);
-	//Get token4 for divide
+	//Get token4 for divide and push to stack
 	getToken_ExpectAndReturn(tokenizer,token6);
 	operatorPush_Expect(token6);
-	//Get token5 for number 9
+	//Get token5 for number 9 and add to output
 	getToken_ExpectAndReturn(tokenizer,token7);
 	addToOutput_Expect(token7);
 	
 	//Call funtion
 	evaluate2("3|7+8/9");
 	
+	//Unit test
+	TEST_ASSERT_EQUAL_STRING("3|7+8/9",tokenizer->rawString);
+	TEST_ASSERT_EQUAL(3,number3->value);
+	TEST_ASSERT_EQUAL(BITWISE_OR,bitwiseOR->ope);
+	TEST_ASSERT_EQUAL(7,number7->value);
+	TEST_ASSERT_EQUAL(ADD,plus->ope);
+	TEST_ASSERT_EQUAL(8,number8->value);
+	TEST_ASSERT_EQUAL(DIVIDE,division->ope);
+	TEST_ASSERT_EQUAL(9,number9->value);
 }	
 

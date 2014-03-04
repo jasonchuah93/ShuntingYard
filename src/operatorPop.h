@@ -4,7 +4,7 @@
 #include "ShuntingYard.h"
 
 //Function declaration
-void operatorPop(Token *token);
+Token *operatorPop(Token *token);
 
 
 
