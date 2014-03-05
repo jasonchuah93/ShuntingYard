@@ -4,7 +4,7 @@
 #include "ShuntingYard.h"
 
 //Function declaration
-void addToOutput(Token *token);
+void numberPush(Token *token);
 
 
 

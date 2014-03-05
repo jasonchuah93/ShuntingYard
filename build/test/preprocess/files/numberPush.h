@@ -9,4 +9,4 @@
 
 
 
-void addToOutput(Token *token);
+void numberPush(Token *token);

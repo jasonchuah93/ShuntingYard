@@ -89,9 +89,9 @@ int main(void)
 {
   Unity.TestFile = "test_evaluate.c";
   UnityBegin();
-  RUN_TEST(test_evaluate_2_PLUS_3, 15);
-  RUN_TEST(test_evaluate_4_PLUS_5_MULTIPLY_6, 60);
-  RUN_TEST(test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9, 123);
+  RUN_TEST(test_evaluate_2_PLUS_3, 14);
+  RUN_TEST(test_evaluate_4_PLUS_5_MULTIPLY_6, 45);
+  RUN_TEST(test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9, 90);
 
   return (UnityEnd());
 }

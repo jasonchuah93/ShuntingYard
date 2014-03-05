@@ -20,13 +20,15 @@ typedef struct {
 
 typedef struct {
 	Token type;
-	Operation ope;
+	Operation operators;
 }Operator;
 
 typedef struct {
 	Token type;
 	char *name;
 }Identifier;
+
+
 
 void evaluate (char *expression);
 void evaluate1 (char *expression);
