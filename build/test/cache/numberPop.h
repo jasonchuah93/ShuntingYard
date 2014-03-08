@@ -11,4 +11,4 @@
 
 
 
-void operatorPush(Token *token);
+void numberPop(Token *token);

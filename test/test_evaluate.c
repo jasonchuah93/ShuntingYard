@@ -6,10 +6,10 @@
 #include "mock_getToken.h"
 #include "mock_numberPush.h"
 #include "mock_operatorPush.h"
-#include "mock_operatorPop.h"
+
 
 void setUp(){}
-void tearDown() {}
+void tearDown(){}
 
 void test_evaluate_2_PLUS_3(){
 	//Initialize tokenizer and token
@@ -115,25 +115,25 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 	//Evaluate the function
 	//Initialize tokenizer
 	initTokenizer_ExpectAndReturn("3|7+8/9",&tokenizer);
-	//Get token1 for number 3 and add to output
+	//Get token1 for number 3 and push to number stack
 	getToken_ExpectAndReturn(&tokenizer,token1);
 	numberPush_Expect(token1);
 	//Get token2 for bitwise OR and push to stack
 	getToken_ExpectAndReturn(&tokenizer,token2);
 	operatorPush_Expect(token2);
-	//Get token3 for number 7 and add to output
+	//Get token3 for number 7 and push to number stack
 	getToken_ExpectAndReturn(&tokenizer,token3);
 	numberPush_Expect(token3);
 	//Get token4 for plus and push to stack
 	getToken_ExpectAndReturn(&tokenizer,token4);
 	operatorPush_Expect(token4);
-	//Get token5 for number 8 and add to output
+	//Get token5 for number 8 and push to number stack
 	getToken_ExpectAndReturn(&tokenizer,token5);
 	numberPush_Expect(token5);
 	//Get token4 for divide and push to stack
 	getToken_ExpectAndReturn(&tokenizer,token6);
 	operatorPush_Expect(token6);
-	//Get token5 for number 9 and add to output
+	//Get token5 for number 9 and push to number stack
 	getToken_ExpectAndReturn(&tokenizer,token7);
 	numberPush_Expect(token7);
 	
@@ -142,3 +142,45 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 	
 }	
 
+void test_evaluate_2_PLUS_3_MULTIPLY_4(){
+	//Initialize tokenizer and token
+	Tokenizer tokenizer = {.rawString= "2+3*4", .startIndex=0, .length=5};
+	
+	Number number2 = {.type=NUMBER, .value=2};
+	Token *token1 = (Token*)&number2;
+	
+	Operator plus = {.type=OPERATOR, .operators=ADD};
+	Token *token2 = (Token*)&plus;
+	
+	Number number3 = {.type=NUMBER, .value=3};
+	Token *token3 = (Token*)&number3;
+		
+	Operator multiply = {.type=OPERATOR, .operators=MULTIPLY};
+	Token *token4 = (Token*)&multiply;
+
+	Number number4 = {.type=NUMBER, .value=4};
+	Token *token5 = (Token*)&number4;
+	
+	//Evaluate function
+	//Initialize tokenizer
+	initTokenizer_ExpectAndReturn("2+3*4",&tokenizer);
+	//Get token1 for number2 and push to number stack
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	numberPush_Expect(token1);
+	//Get token2 for plus and push to operator stack
+	getToken_ExpectAndReturn(&tokenizer,token2);
+	operatorPush_Expect(token2);
+	//Get token3 for number3 and push to number stack
+	getToken_ExpectAndReturn(&tokenizer,token3);
+	numberPush_Expect(token3);
+	//Get token4 for multiply and push to operator stack
+	getToken_ExpectAndReturn(&tokenizer,token4);
+	operatorPush_Expect(token4);
+	//Get token5 for number4 and push to number stack
+	getToken_ExpectAndReturn(&tokenizer,token5);
+	numberPush_Expect(token5);
+	
+	//Call function
+	evaluate3("2+3*4");
+	
+}

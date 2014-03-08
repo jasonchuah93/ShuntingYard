@@ -1,15 +1,16 @@
 #include "unity.h"
 #include "mock_operatorPush.h"
-#include "mock_operatorPop.h"
 #include "mock_numberPush.h"
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
 #include "ShuntingYard.h"
 
 
+
+
 void setUp(){}
 
-void tearDown() {}
+void tearDown(){}
 
 
 
@@ -268,6 +269,92 @@ void test_evaluate_3_bitwiseOR_7_PLUS_8_DIVIDE_9(){
 
 
  evaluate2("3|7+8/9");
+
+
+
+}
+
+
+
+void test_evaluate_2_PLUS_3_MULTIPLY_4(){
+
+
+
+ Tokenizer tokenizer = {.rawString= "2+3*4", .startIndex=0, .length=5};
+
+
+
+ Number number2 = {.type=NUMBER, .value=2};
+
+ Token *token1 = (Token*)&number2;
+
+
+
+ Operator plus = {.type=OPERATOR, .operators=ADD};
+
+ Token *token2 = (Token*)&plus;
+
+
+
+ Number number3 = {.type=NUMBER, .value=3};
+
+ Token *token3 = (Token*)&number3;
+
+
+
+ Operator multiply = {.type=OPERATOR, .operators=MULTIPLY};
+
+ Token *token4 = (Token*)&multiply;
+
+
+
+ Number number4 = {.type=NUMBER, .value=4};
+
+ Token *token5 = (Token*)&number4;
+
+
+
+
+
+
+
+ initTokenizer_CMockExpectAndReturn(166, "2+3*4", &tokenizer);
+
+
+
+ getToken_CMockExpectAndReturn(168, &tokenizer, token1);
+
+ numberPush_CMockExpect(169, token1);
+
+
+
+ getToken_CMockExpectAndReturn(171, &tokenizer, token2);
+
+ operatorPush_CMockExpect(172, token2);
+
+
+
+ getToken_CMockExpectAndReturn(174, &tokenizer, token3);
+
+ numberPush_CMockExpect(175, token3);
+
+
+
+ getToken_CMockExpectAndReturn(177, &tokenizer, token4);
+
+ operatorPush_CMockExpect(178, token4);
+
+
+
+ getToken_CMockExpectAndReturn(180, &tokenizer, token5);
+
+ numberPush_CMockExpect(181, token5);
+
+
+
+
+
+ evaluate3("2+3*4");
 
 
 

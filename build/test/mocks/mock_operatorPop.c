@@ -9,16 +9,14 @@
 typedef struct _CMOCK_operatorPop_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
-  Token* ReturnVal;
   int CallOrder;
-  Token* Expected_token;
+  Stack* Expected_token;
 
 } CMOCK_operatorPop_CALL_INSTANCE;
 
 static struct mock_operatorPopInstance
 {
   int operatorPop_IgnoreBool;
-  Token* operatorPop_FinalReturn;
   CMOCK_operatorPop_CALLBACK operatorPop_CallbackFunctionPointer;
   int operatorPop_CallbackCalls;
   CMOCK_MEM_INDEX_TYPE operatorPop_CallInstance;
@@ -53,21 +51,19 @@ void mock_operatorPop_Destroy(void)
   GlobalVerifyOrder = 0;
 }
 
-Token* operatorPop(Token* token)
+void operatorPop(Stack* token)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
   CMOCK_operatorPop_CALL_INSTANCE* cmock_call_instance = (CMOCK_operatorPop_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.operatorPop_CallInstance);
   Mock.operatorPop_CallInstance = CMock_Guts_MemNext(Mock.operatorPop_CallInstance);
   if (Mock.operatorPop_IgnoreBool)
   {
-    if (cmock_call_instance == NULL)
-      return Mock.operatorPop_FinalReturn;
-    Mock.operatorPop_FinalReturn = cmock_call_instance->ReturnVal;
-    return cmock_call_instance->ReturnVal;
+    return;
   }
   if (Mock.operatorPop_CallbackFunctionPointer != NULL)
   {
-    return Mock.operatorPop_CallbackFunctionPointer(token, Mock.operatorPop_CallbackCalls++);
+    Mock.operatorPop_CallbackFunctionPointer(token, Mock.operatorPop_CallbackCalls++);
+    return;
   }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'operatorPop' called more times than expected.");
   cmock_line = cmock_call_instance->LineNumber;
@@ -75,27 +71,20 @@ Token* operatorPop(Token* token)
     UNITY_TEST_FAIL(cmock_line, "Function 'operatorPop' called earlier than expected.");
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'operatorPop' called later than expected.");
-  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_token), (void*)(token), sizeof(Token), cmock_line, "Function 'operatorPop' called with unexpected value for argument 'token'.");
-  return cmock_call_instance->ReturnVal;
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_token), (void*)(token), sizeof(Stack), cmock_line, "Function 'operatorPop' called with unexpected value for argument 'token'.");
 }
 
-void CMockExpectParameters_operatorPop(CMOCK_operatorPop_CALL_INSTANCE* cmock_call_instance, Token* token)
+void CMockExpectParameters_operatorPop(CMOCK_operatorPop_CALL_INSTANCE* cmock_call_instance, Stack* token)
 {
   cmock_call_instance->Expected_token = token;
 }
 
-void operatorPop_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_return)
+void operatorPop_CMockIgnore(void)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_operatorPop_CALL_INSTANCE));
-  CMOCK_operatorPop_CALL_INSTANCE* cmock_call_instance = (CMOCK_operatorPop_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
-  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
-  Mock.operatorPop_CallInstance = CMock_Guts_MemChain(Mock.operatorPop_CallInstance, cmock_guts_index);
-  cmock_call_instance->LineNumber = cmock_line;
-  cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.operatorPop_IgnoreBool = (int)1;
 }
 
-void operatorPop_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* token, Token* cmock_to_return)
+void operatorPop_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* token)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_operatorPop_CALL_INSTANCE));
   CMOCK_operatorPop_CALL_INSTANCE* cmock_call_instance = (CMOCK_operatorPop_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
@@ -104,7 +93,6 @@ void operatorPop_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* token, 
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
   CMockExpectParameters_operatorPop(cmock_call_instance, token);
-  cmock_call_instance->ReturnVal = cmock_to_return;
 }
 
 void operatorPop_StubWithCallback(CMOCK_operatorPop_CALLBACK Callback)

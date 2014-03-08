@@ -33,6 +33,8 @@ typedef struct {
 void evaluate (char *expression);
 void evaluate1 (char *expression);
 void evaluate2 (char *expression);
+void evaluate3 (char *expression);
+
 
 #endif //__SHUNTING_YARD_H__
 

@@ -1,4 +1,4 @@
-#include "ShuntingYard.h"
+#include "operatorEvaluate.h"
 
 
 
@@ -9,4 +9,4 @@
 
 
 
-Token *operatorPop(Token *token);
+void operatorPop(Stack *token);

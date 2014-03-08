@@ -11,11 +11,11 @@ void mock_operatorPop_Verify(void);
 
 
 
-#define operatorPop_IgnoreAndReturn(cmock_retval) operatorPop_CMockIgnoreAndReturn(__LINE__, cmock_retval)
-void operatorPop_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_return);
-#define operatorPop_ExpectAndReturn(token, cmock_retval) operatorPop_CMockExpectAndReturn(__LINE__, token, cmock_retval)
-void operatorPop_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* token, Token* cmock_to_return);
-typedef Token* (* CMOCK_operatorPop_CALLBACK)(Token* token, int cmock_num_calls);
+#define operatorPop_Ignore() operatorPop_CMockIgnore()
+void operatorPop_CMockIgnore(void);
+#define operatorPop_Expect(token) operatorPop_CMockExpect(__LINE__, token)
+void operatorPop_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* token);
+typedef void (* CMOCK_operatorPop_CALLBACK)(Stack* token, int cmock_num_calls);
 void operatorPop_StubWithCallback(CMOCK_operatorPop_CALLBACK Callback);
 
 #endif
