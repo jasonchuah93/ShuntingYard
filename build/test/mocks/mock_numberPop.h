@@ -11,11 +11,11 @@ void mock_numberPop_Verify(void);
 
 
 
-#define numberPop_Ignore() numberPop_CMockIgnore()
-void numberPop_CMockIgnore(void);
-#define numberPop_Expect(token) numberPop_CMockExpect(__LINE__, token)
-void numberPop_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token);
-typedef void (* CMOCK_numberPop_CALLBACK)(Token* token, int cmock_num_calls);
+#define numberPop_IgnoreAndReturn(cmock_retval) numberPop_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void numberPop_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, void* cmock_to_return);
+#define numberPop_ExpectAndReturn(token, cmock_retval) numberPop_CMockExpectAndReturn(__LINE__, token, cmock_retval)
+void numberPop_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Stack* token, void* cmock_to_return);
+typedef void* (* CMOCK_numberPop_CALLBACK)(Stack* token, int cmock_num_calls);
 void numberPop_StubWithCallback(CMOCK_numberPop_CALLBACK Callback);
 
 #endif

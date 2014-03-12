@@ -144,4 +144,8 @@ void evaluate3 (char *expression){
 	token = getToken(tokenizer);
 	numberPush(token);
 	
+	
+	
+	
+	
 }

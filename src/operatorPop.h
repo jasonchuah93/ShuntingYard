@@ -4,7 +4,7 @@
 #include "operatorEvaluate.h"
 
 //Function declaration
-void operatorPop(Stack *token);
+void *operatorPop(Stack *token);
 
 
 

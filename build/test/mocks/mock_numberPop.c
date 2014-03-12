@@ -9,14 +9,16 @@
 typedef struct _CMOCK_numberPop_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
+  void* ReturnVal;
   int CallOrder;
-  Token* Expected_token;
+  Stack* Expected_token;
 
 } CMOCK_numberPop_CALL_INSTANCE;
 
 static struct mock_numberPopInstance
 {
   int numberPop_IgnoreBool;
+  void* numberPop_FinalReturn;
   CMOCK_numberPop_CALLBACK numberPop_CallbackFunctionPointer;
   int numberPop_CallbackCalls;
   CMOCK_MEM_INDEX_TYPE numberPop_CallInstance;
@@ -51,19 +53,21 @@ void mock_numberPop_Destroy(void)
   GlobalVerifyOrder = 0;
 }
 
-void numberPop(Token* token)
+void* numberPop(Stack* token)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
   CMOCK_numberPop_CALL_INSTANCE* cmock_call_instance = (CMOCK_numberPop_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.numberPop_CallInstance);
   Mock.numberPop_CallInstance = CMock_Guts_MemNext(Mock.numberPop_CallInstance);
   if (Mock.numberPop_IgnoreBool)
   {
-    return;
+    if (cmock_call_instance == NULL)
+      return Mock.numberPop_FinalReturn;
+    Mock.numberPop_FinalReturn = cmock_call_instance->ReturnVal;
+    return cmock_call_instance->ReturnVal;
   }
   if (Mock.numberPop_CallbackFunctionPointer != NULL)
   {
-    Mock.numberPop_CallbackFunctionPointer(token, Mock.numberPop_CallbackCalls++);
-    return;
+    return Mock.numberPop_CallbackFunctionPointer(token, Mock.numberPop_CallbackCalls++);
   }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'numberPop' called more times than expected.");
   cmock_line = cmock_call_instance->LineNumber;
@@ -71,20 +75,27 @@ void numberPop(Token* token)
     UNITY_TEST_FAIL(cmock_line, "Function 'numberPop' called earlier than expected.");
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'numberPop' called later than expected.");
-  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_token), (void*)(token), sizeof(Token), cmock_line, "Function 'numberPop' called with unexpected value for argument 'token'.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_token), (void*)(token), sizeof(Stack), cmock_line, "Function 'numberPop' called with unexpected value for argument 'token'.");
+  return cmock_call_instance->ReturnVal;
 }
 
-void CMockExpectParameters_numberPop(CMOCK_numberPop_CALL_INSTANCE* cmock_call_instance, Token* token)
+void CMockExpectParameters_numberPop(CMOCK_numberPop_CALL_INSTANCE* cmock_call_instance, Stack* token)
 {
   cmock_call_instance->Expected_token = token;
 }
 
-void numberPop_CMockIgnore(void)
+void numberPop_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, void* cmock_to_return)
 {
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_numberPop_CALL_INSTANCE));
+  CMOCK_numberPop_CALL_INSTANCE* cmock_call_instance = (CMOCK_numberPop_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.numberPop_CallInstance = CMock_Guts_MemChain(Mock.numberPop_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.numberPop_IgnoreBool = (int)1;
 }
 
-void numberPop_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token)
+void numberPop_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Stack* token, void* cmock_to_return)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_numberPop_CALL_INSTANCE));
   CMOCK_numberPop_CALL_INSTANCE* cmock_call_instance = (CMOCK_numberPop_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
@@ -93,6 +104,7 @@ void numberPop_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token)
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
   CMockExpectParameters_numberPop(cmock_call_instance, token);
+  cmock_call_instance->ReturnVal = cmock_to_return;
 }
 
 void numberPop_StubWithCallback(CMOCK_numberPop_CALLBACK Callback)

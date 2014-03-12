@@ -9,4 +9,4 @@
 
 
 
-void operatorPop(Stack *token);
+void *operatorPop(Stack *token);
