@@ -1,6 +1,7 @@
 ---
-- mock_Multiply.h
+- mock_createNumberToken.h
 - mock_numberPop.h
+- mock_numberPush.h
 - mock_operatorPop.h
 - operatorEvaluate.h
 - unity.h

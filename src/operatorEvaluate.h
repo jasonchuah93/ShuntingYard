@@ -10,6 +10,6 @@ typedef struct{
 }Stack;
 
 
-int operatorEvaluate(Stack *numberStack , Stack *operatorStack);
+int operatorEvaluate(Stack *numberStack , Stack *operatorStack,int tempValue,int finalValue);
 
 #endif //__OPERATOR_EVALUATE_H__

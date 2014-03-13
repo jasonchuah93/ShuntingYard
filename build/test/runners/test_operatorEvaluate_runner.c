@@ -26,8 +26,9 @@
 #include "cmock.h"
 #include <setjmp.h>
 #include <stdio.h>
-#include "mock_Multiply.h"
+#include "mock_createNumberToken.h"
 #include "mock_numberPop.h"
+#include "mock_numberPush.h"
 #include "mock_operatorPop.h"
 
 int GlobalExpectCount;
@@ -46,20 +47,23 @@ static void CMock_Init(void)
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
-  mock_Multiply_Init();
+  mock_createNumberToken_Init();
   mock_numberPop_Init();
+  mock_numberPush_Init();
   mock_operatorPop_Init();
 }
 static void CMock_Verify(void)
 {
-  mock_Multiply_Verify();
+  mock_createNumberToken_Verify();
   mock_numberPop_Verify();
+  mock_numberPush_Verify();
   mock_operatorPop_Verify();
 }
 static void CMock_Destroy(void)
 {
-  mock_Multiply_Destroy();
+  mock_createNumberToken_Destroy();
   mock_numberPop_Destroy();
+  mock_numberPush_Destroy();
   mock_operatorPop_Destroy();
 }
 
@@ -79,7 +83,7 @@ int main(void)
 {
   Unity.TestFile = "test_operatorEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_operator_evaluate, 11);
+  RUN_TEST(test_operator_evaluate, 12);
 
   return (UnityEnd());
 }

@@ -4,7 +4,7 @@
 #include "ShuntingYard.h"
 
 //Function declaration
-Token* createNumberToken(int number);
+Token *createNumberToken(int number);
 
 
 
